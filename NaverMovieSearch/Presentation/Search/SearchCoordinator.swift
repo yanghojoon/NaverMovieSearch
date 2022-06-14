@@ -13,7 +13,8 @@ final class SearchCoordinator: CoordinatorDescribing {
     
     // MARK: - Methos
     func start() {
-        let movieSearchViewController = MoviewSearchViewController()
+        let movieSearchViewModel = MovieSearchViewModel()
+        let movieSearchViewController = MovieSearchViewController(viewModel: movieSearchViewModel)
         
         navigationController?.pushViewController(movieSearchViewController, animated: true)
     }
