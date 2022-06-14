@@ -13,6 +13,9 @@
 		DE56953328584EC1009F3DCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE56953128584EC1009F3DCE /* Main.storyboard */; };
 		DE56953528584EC3009F3DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE56953428584EC3009F3DCE /* Assets.xcassets */; };
 		DE56953828584EC3009F3DCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE56953628584EC3009F3DCE /* LaunchScreen.storyboard */; };
+		DE56954B2858502D009F3DCE /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DE56954A2858502D009F3DCE /* RxCocoa */; };
+		DE56954D2858502D009F3DCE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE56954C2858502D009F3DCE /* RxSwift */; };
+		DE569550285850E5009F3DCE /* .swiftlint in Resources */ = {isa = PBXBuildFile; fileRef = DE56954F285850E5009F3DCE /* .swiftlint */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,7 @@
 		DE56953428584EC3009F3DCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE56953728584EC3009F3DCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE56953928584EC3009F3DCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE56954F285850E5009F3DCE /* .swiftlint */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE56954D2858502D009F3DCE /* RxSwift in Frameworks */,
+				DE56954B2858502D009F3DCE /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +46,7 @@
 		DE56951F28584EC1009F3DCE = {
 			isa = PBXGroup;
 			children = (
+				DE56954F285850E5009F3DCE /* .swiftlint */,
 				DE56952A28584EC1009F3DCE /* NaverMovieSearch */,
 				DE56952928584EC1009F3DCE /* Products */,
 			);
@@ -77,12 +84,17 @@
 				DE56952428584EC1009F3DCE /* Sources */,
 				DE56952528584EC1009F3DCE /* Frameworks */,
 				DE56952628584EC1009F3DCE /* Resources */,
+				DE56954E285850B0009F3DCE /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = NaverMovieSearch;
+			packageProductDependencies = (
+				DE56954A2858502D009F3DCE /* RxCocoa */,
+				DE56954C2858502D009F3DCE /* RxSwift */,
+			);
 			productName = NaverMovieSearch;
 			productReference = DE56952828584EC1009F3DCE /* NaverMovieSearch.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +123,9 @@
 				Base,
 			);
 			mainGroup = DE56951F28584EC1009F3DCE;
+			packageReferences = (
+				DE5695492858502D009F3DCE /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = DE56952928584EC1009F3DCE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,6 +140,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE569550285850E5009F3DCE /* .swiftlint in Resources */,
 				DE56953828584EC3009F3DCE /* LaunchScreen.storyboard in Resources */,
 				DE56953528584EC3009F3DCE /* Assets.xcassets in Resources */,
 				DE56953328584EC1009F3DCE /* Main.storyboard in Resources */,
@@ -132,6 +148,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DE56954E285850B0009F3DCE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DE56952428584EC1009F3DCE /* Sources */ = {
@@ -358,6 +394,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DE5695492858502D009F3DCE /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DE56954A2858502D009F3DCE /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE5695492858502D009F3DCE /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		DE56954C2858502D009F3DCE /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE5695492858502D009F3DCE /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DE56952028584EC1009F3DCE /* Project object */;
 }
