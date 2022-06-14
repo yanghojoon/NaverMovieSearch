@@ -10,12 +10,11 @@
 		DE56952C28584EC1009F3DCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56952B28584EC1009F3DCE /* AppDelegate.swift */; };
 		DE56952E28584EC1009F3DCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56952D28584EC1009F3DCE /* SceneDelegate.swift */; };
 		DE56953028584EC1009F3DCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56952F28584EC1009F3DCE /* ViewController.swift */; };
-		DE56953328584EC1009F3DCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE56953128584EC1009F3DCE /* Main.storyboard */; };
 		DE56953528584EC3009F3DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE56953428584EC3009F3DCE /* Assets.xcassets */; };
 		DE56953828584EC3009F3DCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE56953628584EC3009F3DCE /* LaunchScreen.storyboard */; };
 		DE56954B2858502D009F3DCE /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DE56954A2858502D009F3DCE /* RxCocoa */; };
 		DE56954D2858502D009F3DCE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE56954C2858502D009F3DCE /* RxSwift */; };
-		DE569550285850E5009F3DCE /* .swiftlint in Resources */ = {isa = PBXBuildFile; fileRef = DE56954F285850E5009F3DCE /* .swiftlint */; };
+		DE569552285854A2009F3DCE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = DE569551285854A2009F3DCE /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,11 +22,10 @@
 		DE56952B28584EC1009F3DCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE56952D28584EC1009F3DCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DE56952F28584EC1009F3DCE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DE56953228584EC1009F3DCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE56953428584EC3009F3DCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE56953728584EC3009F3DCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE56953928584EC3009F3DCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DE56954F285850E5009F3DCE /* .swiftlint */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint; sourceTree = "<group>"; };
+		DE569551285854A2009F3DCE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +44,7 @@
 		DE56951F28584EC1009F3DCE = {
 			isa = PBXGroup;
 			children = (
-				DE56954F285850E5009F3DCE /* .swiftlint */,
+				DE569551285854A2009F3DCE /* .swiftlint.yml */,
 				DE56952A28584EC1009F3DCE /* NaverMovieSearch */,
 				DE56952928584EC1009F3DCE /* Products */,
 			);
@@ -66,7 +64,6 @@
 				DE56952B28584EC1009F3DCE /* AppDelegate.swift */,
 				DE56952D28584EC1009F3DCE /* SceneDelegate.swift */,
 				DE56952F28584EC1009F3DCE /* ViewController.swift */,
-				DE56953128584EC1009F3DCE /* Main.storyboard */,
 				DE56953428584EC3009F3DCE /* Assets.xcassets */,
 				DE56953628584EC3009F3DCE /* LaunchScreen.storyboard */,
 				DE56953928584EC3009F3DCE /* Info.plist */,
@@ -140,10 +137,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE569550285850E5009F3DCE /* .swiftlint in Resources */,
+				DE569552285854A2009F3DCE /* .swiftlint.yml in Resources */,
 				DE56953828584EC3009F3DCE /* LaunchScreen.storyboard in Resources */,
 				DE56953528584EC3009F3DCE /* Assets.xcassets in Resources */,
-				DE56953328584EC1009F3DCE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,14 +179,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DE56953128584EC1009F3DCE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DE56953228584EC1009F3DCE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DE56953628584EC3009F3DCE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -328,7 +316,6 @@
 				INFOPLIST_FILE = NaverMovieSearch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -356,7 +343,6 @@
 				INFOPLIST_FILE = NaverMovieSearch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

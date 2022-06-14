@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  NaverMovieSearch
-//
-//  Created by 양호준 on 2022/06/14.
-//
-
 import UIKit
 
 @main
