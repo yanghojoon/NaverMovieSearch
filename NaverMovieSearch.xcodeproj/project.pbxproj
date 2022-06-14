@@ -18,6 +18,13 @@
 		DE56955D285856B2009F3DCE /* CoordinatorDescribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56955C285856B2009F3DCE /* CoordinatorDescribing.swift */; };
 		DE56955F2858571D009F3DCE /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56955E2858571D009F3DCE /* AppCoordinator.swift */; };
 		DE5695612858591B009F3DCE /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695602858591B009F3DCE /* SearchCoordinator.swift */; };
+		DE56956428585F7E009F3DCE /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56956328585F7E009F3DCE /* URLSessionProtocol.swift */; };
+		DE56956628585F9C009F3DCE /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56956528585F9B009F3DCE /* APIProtocol.swift */; };
+		DE56956828585FC9009F3DCE /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56956728585FC9009F3DCE /* NetworkProvider.swift */; };
+		DE56956B28586001009F3DCE /* URLRequest+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56956A28586001009F3DCE /* URLRequest+Initializer.swift */; };
+		DE56956E28586048009F3DCE /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56956D28586048009F3DCE /* JSONParser.swift */; };
+		DE5695702858607F009F3DCE /* NaverMovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56956F2858607F009F3DCE /* NaverMovieAPI.swift */; };
+		DE569573285863CC009F3DCE /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE569572285863CC009F3DCE /* SearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +39,13 @@
 		DE56955C285856B2009F3DCE /* CoordinatorDescribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorDescribing.swift; sourceTree = "<group>"; };
 		DE56955E2858571D009F3DCE /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppCoordinator.swift; path = ../AppCoordinator.swift; sourceTree = "<group>"; };
 		DE5695602858591B009F3DCE /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
+		DE56956328585F7E009F3DCE /* URLSessionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		DE56956528585F9B009F3DCE /* APIProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
+		DE56956728585FC9009F3DCE /* NetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
+		DE56956A28586001009F3DCE /* URLRequest+Initializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Initializer.swift"; sourceTree = "<group>"; };
+		DE56956D28586048009F3DCE /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
+		DE56956F2858607F009F3DCE /* NaverMovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMovieAPI.swift; sourceTree = "<group>"; };
+		DE569572285863CC009F3DCE /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +83,10 @@
 			children = (
 				DE569553285855F7009F3DCE /* App */,
 				DE56955428585605009F3DCE /* Presentation */,
-				DE56955A28585673009F3DCE /* Resources */,
+				DE56956228585F53009F3DCE /* Network */,
 				DE56955B2858569C009F3DCE /* Protocol */,
+				DE56956928585FF4009F3DCE /* Extension */,
+				DE56955A28585673009F3DCE /* Resources */,
 				DE56953928584EC3009F3DCE /* Info.plist */,
 			);
 			path = NaverMovieSearch;
@@ -131,9 +147,38 @@
 		DE56955B2858569C009F3DCE /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				DE56956328585F7E009F3DCE /* URLSessionProtocol.swift */,
+				DE56956528585F9B009F3DCE /* APIProtocol.swift */,
 				DE56955C285856B2009F3DCE /* CoordinatorDescribing.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		DE56956228585F53009F3DCE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DE569571285863BE009F3DCE /* Model */,
+				DE56956F2858607F009F3DCE /* NaverMovieAPI.swift */,
+				DE56956728585FC9009F3DCE /* NetworkProvider.swift */,
+				DE56956D28586048009F3DCE /* JSONParser.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		DE56956928585FF4009F3DCE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DE56956A28586001009F3DCE /* URLRequest+Initializer.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		DE569571285863BE009F3DCE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DE569572285863CC009F3DCE /* SearchResult.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,9 +280,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE5695702858607F009F3DCE /* NaverMovieAPI.swift in Sources */,
+				DE56956628585F9C009F3DCE /* APIProtocol.swift in Sources */,
+				DE56956428585F7E009F3DCE /* URLSessionProtocol.swift in Sources */,
+				DE56956828585FC9009F3DCE /* NetworkProvider.swift in Sources */,
+				DE56956E28586048009F3DCE /* JSONParser.swift in Sources */,
 				DE56955F2858571D009F3DCE /* AppCoordinator.swift in Sources */,
 				DE56955D285856B2009F3DCE /* CoordinatorDescribing.swift in Sources */,
+				DE569573285863CC009F3DCE /* SearchResult.swift in Sources */,
 				DE56953028584EC1009F3DCE /* MoviewSearchViewController.swift in Sources */,
+				DE56956B28586001009F3DCE /* URLRequest+Initializer.swift in Sources */,
 				DE56952C28584EC1009F3DCE /* AppDelegate.swift in Sources */,
 				DE5695612858591B009F3DCE /* SearchCoordinator.swift in Sources */,
 				DE56952E28584EC1009F3DCE /* SceneDelegate.swift in Sources */,
