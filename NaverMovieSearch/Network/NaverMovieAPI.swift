@@ -9,10 +9,10 @@ struct NaverMovieAPI: APIProtocol {
     // MARK: - Initializers
     init(queryTerm: String, displayCount: Int = 20, start: Int = 1) {
         let baseURL = "https://openapi.naver.com/v1/search/movie.json"
-        guard let queryData = queryTerm.data(using: .utf8) else { return }
+
         var urlComponents = URLComponents(string: "\(baseURL)")
         let queryItem = [
-            URLQueryItem(name: "query", value: "\(queryData)"),
+            URLQueryItem(name: "query", value: queryTerm),
             URLQueryItem(name: "display", value: "\(displayCount)"),
             URLQueryItem(name: "start", value: "\(start)")
         ]

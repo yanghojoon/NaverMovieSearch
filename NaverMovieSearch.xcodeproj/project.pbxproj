@@ -25,7 +25,22 @@
 		DE56956E28586048009F3DCE /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56956D28586048009F3DCE /* JSONParser.swift */; };
 		DE5695702858607F009F3DCE /* NaverMovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56956F2858607F009F3DCE /* NaverMovieAPI.swift */; };
 		DE569573285863CC009F3DCE /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE569572285863CC009F3DCE /* SearchResult.swift */; };
+		DE569586285865B0009F3DCE /* NetworkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE569585285865B0009F3DCE /* NetworkProviderTests.swift */; };
+		DE56958A28586715009F3DCE /* MockSearchResult.json in Resources */ = {isa = PBXBuildFile; fileRef = DE56958928586715009F3DCE /* MockSearchResult.json */; };
+		DE56958C2858674D009F3DCE /* JSONParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56958B2858674D009F3DCE /* JSONParserTests.swift */; };
+		DE5695942858D47A009F3DCE /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695932858D47A009F3DCE /* MockURLSession.swift */; };
+		DE5695962858D51B009F3DCE /* MockNetworkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695952858D51B009F3DCE /* MockNetworkProviderTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DE56957C285864EF009F3DCE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE56952028584EC1009F3DCE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DE56952728584EC1009F3DCE;
+			remoteInfo = NaverMovieSearch;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DE56952828584EC1009F3DCE /* NaverMovieSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaverMovieSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +61,12 @@
 		DE56956D28586048009F3DCE /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		DE56956F2858607F009F3DCE /* NaverMovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMovieAPI.swift; sourceTree = "<group>"; };
 		DE569572285863CC009F3DCE /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		DE569578285864EF009F3DCE /* NaverMovieSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NaverMovieSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE569585285865B0009F3DCE /* NetworkProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProviderTests.swift; sourceTree = "<group>"; };
+		DE56958928586715009F3DCE /* MockSearchResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockSearchResult.json; sourceTree = "<group>"; };
+		DE56958B2858674D009F3DCE /* JSONParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParserTests.swift; sourceTree = "<group>"; };
+		DE5695932858D47A009F3DCE /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		DE5695952858D51B009F3DCE /* MockNetworkProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkProviderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +79,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DE569575285864EF009F3DCE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -66,6 +94,7 @@
 			children = (
 				DE569551285854A2009F3DCE /* .swiftlint.yml */,
 				DE56952A28584EC1009F3DCE /* NaverMovieSearch */,
+				DE569579285864EF009F3DCE /* NaverMovieSearchTests */,
 				DE56952928584EC1009F3DCE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -74,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				DE56952828584EC1009F3DCE /* NaverMovieSearch.app */,
+				DE569578285864EF009F3DCE /* NaverMovieSearchTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +211,34 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		DE569579285864EF009F3DCE /* NaverMovieSearchTests */ = {
+			isa = PBXGroup;
+			children = (
+				DE569581285864FF009F3DCE /* Network */,
+			);
+			path = NaverMovieSearchTests;
+			sourceTree = "<group>";
+		};
+		DE569581285864FF009F3DCE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DE569585285865B0009F3DCE /* NetworkProviderTests.swift */,
+				DE5695952858D51B009F3DCE /* MockNetworkProviderTests.swift */,
+				DE56958B2858674D009F3DCE /* JSONParserTests.swift */,
+				DE56958228586513009F3DCE /* Mock */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		DE56958228586513009F3DCE /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				DE56958928586715009F3DCE /* MockSearchResult.json */,
+				DE5695932858D47A009F3DCE /* MockURLSession.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -206,6 +264,24 @@
 			productReference = DE56952828584EC1009F3DCE /* NaverMovieSearch.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DE569577285864EF009F3DCE /* NaverMovieSearchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE56957E285864EF009F3DCE /* Build configuration list for PBXNativeTarget "NaverMovieSearchTests" */;
+			buildPhases = (
+				DE569574285864EF009F3DCE /* Sources */,
+				DE569575285864EF009F3DCE /* Frameworks */,
+				DE569576285864EF009F3DCE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DE56957D285864EF009F3DCE /* PBXTargetDependency */,
+			);
+			name = NaverMovieSearchTests;
+			productName = NaverMovieSearchTests;
+			productReference = DE569578285864EF009F3DCE /* NaverMovieSearchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -218,6 +294,10 @@
 				TargetAttributes = {
 					DE56952728584EC1009F3DCE = {
 						CreatedOnToolsVersion = 13.4;
+					};
+					DE569577285864EF009F3DCE = {
+						CreatedOnToolsVersion = 13.4;
+						TestTargetID = DE56952728584EC1009F3DCE;
 					};
 				};
 			};
@@ -238,6 +318,7 @@
 			projectRoot = "";
 			targets = (
 				DE56952728584EC1009F3DCE /* NaverMovieSearch */,
+				DE569577285864EF009F3DCE /* NaverMovieSearchTests */,
 			);
 		};
 /* End PBXProject section */
@@ -250,6 +331,14 @@
 				DE569552285854A2009F3DCE /* .swiftlint.yml in Resources */,
 				DE56953828584EC3009F3DCE /* LaunchScreen.storyboard in Resources */,
 				DE56953528584EC3009F3DCE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE569576285864EF009F3DCE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE56958A28586715009F3DCE /* MockSearchResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +385,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DE569574285864EF009F3DCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE5695942858D47A009F3DCE /* MockURLSession.swift in Sources */,
+				DE56958C2858674D009F3DCE /* JSONParserTests.swift in Sources */,
+				DE569586285865B0009F3DCE /* NetworkProviderTests.swift in Sources */,
+				DE5695962858D51B009F3DCE /* MockNetworkProviderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DE56957D285864EF009F3DCE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE56952728584EC1009F3DCE /* NaverMovieSearch */;
+			targetProxy = DE56957C285864EF009F3DCE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DE56953628584EC3009F3DCE /* LaunchScreen.storyboard */ = {
@@ -478,6 +586,42 @@
 			};
 			name = Release;
 		};
+		DE56957F285864EF009F3DCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FA464JRW3F;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hojoon.NaverMovieSearchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NaverMovieSearch.app/NaverMovieSearch";
+			};
+			name = Debug;
+		};
+		DE569580285864EF009F3DCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FA464JRW3F;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hojoon.NaverMovieSearchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NaverMovieSearch.app/NaverMovieSearch";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -495,6 +639,15 @@
 			buildConfigurations = (
 				DE56953D28584EC3009F3DCE /* Debug */,
 				DE56953E28584EC3009F3DCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE56957E285864EF009F3DCE /* Build configuration list for PBXNativeTarget "NaverMovieSearchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE56957F285864EF009F3DCE /* Debug */,
+				DE569580285864EF009F3DCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
