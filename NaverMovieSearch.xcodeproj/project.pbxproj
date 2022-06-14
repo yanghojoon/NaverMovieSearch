@@ -9,23 +9,29 @@
 /* Begin PBXBuildFile section */
 		DE56952C28584EC1009F3DCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56952B28584EC1009F3DCE /* AppDelegate.swift */; };
 		DE56952E28584EC1009F3DCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56952D28584EC1009F3DCE /* SceneDelegate.swift */; };
-		DE56953028584EC1009F3DCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56952F28584EC1009F3DCE /* ViewController.swift */; };
+		DE56953028584EC1009F3DCE /* MoviewSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56952F28584EC1009F3DCE /* MoviewSearchViewController.swift */; };
 		DE56953528584EC3009F3DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE56953428584EC3009F3DCE /* Assets.xcassets */; };
 		DE56953828584EC3009F3DCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE56953628584EC3009F3DCE /* LaunchScreen.storyboard */; };
 		DE56954B2858502D009F3DCE /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DE56954A2858502D009F3DCE /* RxCocoa */; };
 		DE56954D2858502D009F3DCE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE56954C2858502D009F3DCE /* RxSwift */; };
 		DE569552285854A2009F3DCE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = DE569551285854A2009F3DCE /* .swiftlint.yml */; };
+		DE56955D285856B2009F3DCE /* CoordinatorDescribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56955C285856B2009F3DCE /* CoordinatorDescribing.swift */; };
+		DE56955F2858571D009F3DCE /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56955E2858571D009F3DCE /* AppCoordinator.swift */; };
+		DE5695612858591B009F3DCE /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695602858591B009F3DCE /* SearchCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DE56952828584EC1009F3DCE /* NaverMovieSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaverMovieSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE56952B28584EC1009F3DCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE56952D28584EC1009F3DCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DE56952F28584EC1009F3DCE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DE56952F28584EC1009F3DCE /* MoviewSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviewSearchViewController.swift; sourceTree = "<group>"; };
 		DE56953428584EC3009F3DCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE56953728584EC3009F3DCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE56953928584EC3009F3DCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE569551285854A2009F3DCE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		DE56955C285856B2009F3DCE /* CoordinatorDescribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorDescribing.swift; sourceTree = "<group>"; };
+		DE56955E2858571D009F3DCE /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppCoordinator.swift; path = ../AppCoordinator.swift; sourceTree = "<group>"; };
+		DE5695602858591B009F3DCE /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,14 +67,73 @@
 		DE56952A28584EC1009F3DCE /* NaverMovieSearch */ = {
 			isa = PBXGroup;
 			children = (
-				DE56952B28584EC1009F3DCE /* AppDelegate.swift */,
-				DE56952D28584EC1009F3DCE /* SceneDelegate.swift */,
-				DE56952F28584EC1009F3DCE /* ViewController.swift */,
-				DE56953428584EC3009F3DCE /* Assets.xcassets */,
-				DE56953628584EC3009F3DCE /* LaunchScreen.storyboard */,
+				DE569553285855F7009F3DCE /* App */,
+				DE56955428585605009F3DCE /* Presentation */,
+				DE56955A28585673009F3DCE /* Resources */,
+				DE56955B2858569C009F3DCE /* Protocol */,
 				DE56953928584EC3009F3DCE /* Info.plist */,
 			);
 			path = NaverMovieSearch;
+			sourceTree = "<group>";
+		};
+		DE569553285855F7009F3DCE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				DE56952B28584EC1009F3DCE /* AppDelegate.swift */,
+				DE56952D28584EC1009F3DCE /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		DE56955428585605009F3DCE /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				DE56955E2858571D009F3DCE /* AppCoordinator.swift */,
+				DE5695552858561E009F3DCE /* Search */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		DE5695552858561E009F3DCE /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				DE5695602858591B009F3DCE /* SearchCoordinator.swift */,
+				DE56955728585637009F3DCE /* View */,
+				DE5695562858562F009F3DCE /* ViewModel */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		DE5695562858562F009F3DCE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DE56955728585637009F3DCE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE56952F28584EC1009F3DCE /* MoviewSearchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE56955A28585673009F3DCE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DE56953428584EC3009F3DCE /* Assets.xcassets */,
+				DE56953628584EC3009F3DCE /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DE56955B2858569C009F3DCE /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				DE56955C285856B2009F3DCE /* CoordinatorDescribing.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,8 +235,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE56953028584EC1009F3DCE /* ViewController.swift in Sources */,
+				DE56955F2858571D009F3DCE /* AppCoordinator.swift in Sources */,
+				DE56955D285856B2009F3DCE /* CoordinatorDescribing.swift in Sources */,
+				DE56953028584EC1009F3DCE /* MoviewSearchViewController.swift in Sources */,
 				DE56952C28584EC1009F3DCE /* AppDelegate.swift in Sources */,
+				DE5695612858591B009F3DCE /* SearchCoordinator.swift in Sources */,
 				DE56952E28584EC1009F3DCE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
