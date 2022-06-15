@@ -3,6 +3,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var appCoordinator: CoordinatorDescribing?
 
     func scene(
         _ scene: UIScene,
@@ -17,6 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
         navigationController.view.backgroundColor = .systemBackground
         window?.rootViewController = navigationController
+        
+        appCoordinator = AppCoordinator(navigationController: navigationController)
+        appCoordinator?.start()
     }
 
 }

@@ -1,0 +1,21 @@
+{
+    "title": "Naver Open API - movie ::'주식'",
+    "link": "http://search.naver.com",
+    "description": "Naver Search Result",
+    "lastBuildDate": "Wed, 28 Sep 2016 16:40:17 +0900",
+    "total": "2",
+    "start": "1",
+    "display": "2",
+    "items": [
+        {
+            "title": "주마등<b>주식</b>회사",
+            "link": "http://openapi.naver.com/l?AAADWLQQvCIBzFP83f48h0zh08uK1B0S2IOm7mUEIts0F9+vQQPN77vQfv+dbxI2DXgyTQ9QV4B+2ATNSLMCk9gEjYjlkurFZXflp1rFRw/yXnbEspNk8vqypvPJBRhZsGMrSMY4ySwLSpN5RT3NSYIScO5nxhdzc18cjq0958w8LneKUy8fz6AdRxjD6YAAAA",
+            "image": "http://imgmovie.naver.com/mdi/mit110/0968/96811_P01_142155.jpg",
+            "subtitle": "走馬&#28783;株式&#20250;社",
+            "pubDate": "2012",
+            "director": "미키 코이치로|",
+            "actor": "카시이 유우|쿠보타 마사타카|카지와라 히카리|치요 쇼타|요코야마 메구미|카시와바라 슈지|",
+            "userRating": "4.50"
+        }
+    ]
+}

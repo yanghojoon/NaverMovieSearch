@@ -9,23 +9,78 @@
 /* Begin PBXBuildFile section */
 		DE56952C28584EC1009F3DCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56952B28584EC1009F3DCE /* AppDelegate.swift */; };
 		DE56952E28584EC1009F3DCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56952D28584EC1009F3DCE /* SceneDelegate.swift */; };
-		DE56953028584EC1009F3DCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56952F28584EC1009F3DCE /* ViewController.swift */; };
+		DE56953028584EC1009F3DCE /* MovieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56952F28584EC1009F3DCE /* MovieSearchViewController.swift */; };
 		DE56953528584EC3009F3DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE56953428584EC3009F3DCE /* Assets.xcassets */; };
 		DE56953828584EC3009F3DCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE56953628584EC3009F3DCE /* LaunchScreen.storyboard */; };
 		DE56954B2858502D009F3DCE /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DE56954A2858502D009F3DCE /* RxCocoa */; };
 		DE56954D2858502D009F3DCE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE56954C2858502D009F3DCE /* RxSwift */; };
 		DE569552285854A2009F3DCE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = DE569551285854A2009F3DCE /* .swiftlint.yml */; };
+		DE56955D285856B2009F3DCE /* CoordinatorDescribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56955C285856B2009F3DCE /* CoordinatorDescribing.swift */; };
+		DE56955F2858571D009F3DCE /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56955E2858571D009F3DCE /* AppCoordinator.swift */; };
+		DE5695612858591B009F3DCE /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695602858591B009F3DCE /* SearchCoordinator.swift */; };
+		DE56956428585F7E009F3DCE /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56956328585F7E009F3DCE /* URLSessionProtocol.swift */; };
+		DE56956628585F9C009F3DCE /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56956528585F9B009F3DCE /* APIProtocol.swift */; };
+		DE56956828585FC9009F3DCE /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56956728585FC9009F3DCE /* NetworkProvider.swift */; };
+		DE56956B28586001009F3DCE /* URLRequest+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56956A28586001009F3DCE /* URLRequest+Initializer.swift */; };
+		DE56956E28586048009F3DCE /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56956D28586048009F3DCE /* JSONParser.swift */; };
+		DE5695702858607F009F3DCE /* NaverMovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56956F2858607F009F3DCE /* NaverMovieAPI.swift */; };
+		DE569573285863CC009F3DCE /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE569572285863CC009F3DCE /* SearchResult.swift */; };
+		DE569586285865B0009F3DCE /* NetworkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE569585285865B0009F3DCE /* NetworkProviderTests.swift */; };
+		DE56958A28586715009F3DCE /* MockSearchResult.json in Resources */ = {isa = PBXBuildFile; fileRef = DE56958928586715009F3DCE /* MockSearchResult.json */; };
+		DE56958C2858674D009F3DCE /* JSONParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56958B2858674D009F3DCE /* JSONParserTests.swift */; };
+		DE5695942858D47A009F3DCE /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695932858D47A009F3DCE /* MockURLSession.swift */; };
+		DE5695962858D51B009F3DCE /* MockNetworkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695952858D51B009F3DCE /* MockNetworkProviderTests.swift */; };
+		DE5695982858DA06009F3DCE /* UICollectionView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695972858DA06009F3DCE /* UICollectionView+Register.swift */; };
+		DE56959A2858DA44009F3DCE /* MovieListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695992858DA44009F3DCE /* MovieListCell.swift */; };
+		DE56959C2858E333009F3DCE /* MovieSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56959B2858E333009F3DCE /* MovieSearchViewModel.swift */; };
+		DE56959F285947CD009F3DCE /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56959E285947CD009F3DCE /* ImageCacheManager.swift */; };
+		DE5695A12859481B009F3DCE /* UIImage+LoadCachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695A02859481B009F3DCE /* UIImage+LoadCachedImage.swift */; };
+		DE5695A328595417009F3DCE /* String+Replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695A228595417009F3DCE /* String+Replace.swift */; };
+		DEDF032A285A0AEC000F7915 /* CellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF0329285A0AEC000F7915 /* CellItem.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DE56957C285864EF009F3DCE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE56952028584EC1009F3DCE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DE56952728584EC1009F3DCE;
+			remoteInfo = NaverMovieSearch;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DE56952828584EC1009F3DCE /* NaverMovieSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaverMovieSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE56952B28584EC1009F3DCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE56952D28584EC1009F3DCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DE56952F28584EC1009F3DCE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DE56952F28584EC1009F3DCE /* MovieSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchViewController.swift; sourceTree = "<group>"; };
 		DE56953428584EC3009F3DCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE56953728584EC3009F3DCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE56953928584EC3009F3DCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE569551285854A2009F3DCE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		DE56955C285856B2009F3DCE /* CoordinatorDescribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorDescribing.swift; sourceTree = "<group>"; };
+		DE56955E2858571D009F3DCE /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppCoordinator.swift; path = ../AppCoordinator.swift; sourceTree = "<group>"; };
+		DE5695602858591B009F3DCE /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
+		DE56956328585F7E009F3DCE /* URLSessionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		DE56956528585F9B009F3DCE /* APIProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
+		DE56956728585FC9009F3DCE /* NetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
+		DE56956A28586001009F3DCE /* URLRequest+Initializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Initializer.swift"; sourceTree = "<group>"; };
+		DE56956D28586048009F3DCE /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
+		DE56956F2858607F009F3DCE /* NaverMovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMovieAPI.swift; sourceTree = "<group>"; };
+		DE569572285863CC009F3DCE /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		DE569578285864EF009F3DCE /* NaverMovieSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NaverMovieSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE569585285865B0009F3DCE /* NetworkProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProviderTests.swift; sourceTree = "<group>"; };
+		DE56958928586715009F3DCE /* MockSearchResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockSearchResult.json; sourceTree = "<group>"; };
+		DE56958B2858674D009F3DCE /* JSONParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParserTests.swift; sourceTree = "<group>"; };
+		DE5695932858D47A009F3DCE /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		DE5695952858D51B009F3DCE /* MockNetworkProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkProviderTests.swift; sourceTree = "<group>"; };
+		DE5695972858DA06009F3DCE /* UICollectionView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Register.swift"; sourceTree = "<group>"; };
+		DE5695992858DA44009F3DCE /* MovieListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListCell.swift; sourceTree = "<group>"; };
+		DE56959B2858E333009F3DCE /* MovieSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchViewModel.swift; sourceTree = "<group>"; };
+		DE56959E285947CD009F3DCE /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		DE5695A02859481B009F3DCE /* UIImage+LoadCachedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+LoadCachedImage.swift"; sourceTree = "<group>"; };
+		DE5695A228595417009F3DCE /* String+Replace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Replace.swift"; sourceTree = "<group>"; };
+		DEDF0329285A0AEC000F7915 /* CellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +93,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DE569575285864EF009F3DCE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -46,6 +108,7 @@
 			children = (
 				DE569551285854A2009F3DCE /* .swiftlint.yml */,
 				DE56952A28584EC1009F3DCE /* NaverMovieSearch */,
+				DE569579285864EF009F3DCE /* NaverMovieSearchTests */,
 				DE56952928584EC1009F3DCE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				DE56952828584EC1009F3DCE /* NaverMovieSearch.app */,
+				DE569578285864EF009F3DCE /* NaverMovieSearchTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,14 +125,147 @@
 		DE56952A28584EC1009F3DCE /* NaverMovieSearch */ = {
 			isa = PBXGroup;
 			children = (
-				DE56952B28584EC1009F3DCE /* AppDelegate.swift */,
-				DE56952D28584EC1009F3DCE /* SceneDelegate.swift */,
-				DE56952F28584EC1009F3DCE /* ViewController.swift */,
-				DE56953428584EC3009F3DCE /* Assets.xcassets */,
-				DE56953628584EC3009F3DCE /* LaunchScreen.storyboard */,
+				DE569553285855F7009F3DCE /* App */,
+				DE56955428585605009F3DCE /* Presentation */,
+				DE569571285863BE009F3DCE /* Model */,
+				DE56956228585F53009F3DCE /* Network */,
+				DE56955B2858569C009F3DCE /* Protocol */,
+				DE56956928585FF4009F3DCE /* Extension */,
+				DE56959D285947AD009F3DCE /* Utility */,
+				DE56955A28585673009F3DCE /* Resources */,
 				DE56953928584EC3009F3DCE /* Info.plist */,
 			);
 			path = NaverMovieSearch;
+			sourceTree = "<group>";
+		};
+		DE569553285855F7009F3DCE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				DE56952B28584EC1009F3DCE /* AppDelegate.swift */,
+				DE56952D28584EC1009F3DCE /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		DE56955428585605009F3DCE /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				DE56955E2858571D009F3DCE /* AppCoordinator.swift */,
+				DE5695552858561E009F3DCE /* Search */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		DE5695552858561E009F3DCE /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				DE5695602858591B009F3DCE /* SearchCoordinator.swift */,
+				DE56955728585637009F3DCE /* View */,
+				DE5695562858562F009F3DCE /* ViewModel */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		DE5695562858562F009F3DCE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DE56959B2858E333009F3DCE /* MovieSearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DE56955728585637009F3DCE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE56952F28584EC1009F3DCE /* MovieSearchViewController.swift */,
+				DE5695992858DA44009F3DCE /* MovieListCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE56955A28585673009F3DCE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DE56953428584EC3009F3DCE /* Assets.xcassets */,
+				DE56953628584EC3009F3DCE /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DE56955B2858569C009F3DCE /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				DE56956328585F7E009F3DCE /* URLSessionProtocol.swift */,
+				DE56956528585F9B009F3DCE /* APIProtocol.swift */,
+				DE56955C285856B2009F3DCE /* CoordinatorDescribing.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		DE56956228585F53009F3DCE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DE56956F2858607F009F3DCE /* NaverMovieAPI.swift */,
+				DE56956728585FC9009F3DCE /* NetworkProvider.swift */,
+				DE56956D28586048009F3DCE /* JSONParser.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		DE56956928585FF4009F3DCE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DE56956A28586001009F3DCE /* URLRequest+Initializer.swift */,
+				DE5695A02859481B009F3DCE /* UIImage+LoadCachedImage.swift */,
+				DE5695972858DA06009F3DCE /* UICollectionView+Register.swift */,
+				DE5695A228595417009F3DCE /* String+Replace.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		DE569571285863BE009F3DCE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DE569572285863CC009F3DCE /* SearchResult.swift */,
+				DEDF0329285A0AEC000F7915 /* CellItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DE569579285864EF009F3DCE /* NaverMovieSearchTests */ = {
+			isa = PBXGroup;
+			children = (
+				DE569581285864FF009F3DCE /* Network */,
+			);
+			path = NaverMovieSearchTests;
+			sourceTree = "<group>";
+		};
+		DE569581285864FF009F3DCE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DE569585285865B0009F3DCE /* NetworkProviderTests.swift */,
+				DE5695952858D51B009F3DCE /* MockNetworkProviderTests.swift */,
+				DE56958B2858674D009F3DCE /* JSONParserTests.swift */,
+				DE56958228586513009F3DCE /* Mock */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		DE56958228586513009F3DCE /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				DE56958928586715009F3DCE /* MockSearchResult.json */,
+				DE5695932858D47A009F3DCE /* MockURLSession.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		DE56959D285947AD009F3DCE /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				DE56959E285947CD009F3DCE /* ImageCacheManager.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +293,24 @@
 			productReference = DE56952828584EC1009F3DCE /* NaverMovieSearch.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DE569577285864EF009F3DCE /* NaverMovieSearchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE56957E285864EF009F3DCE /* Build configuration list for PBXNativeTarget "NaverMovieSearchTests" */;
+			buildPhases = (
+				DE569574285864EF009F3DCE /* Sources */,
+				DE569575285864EF009F3DCE /* Frameworks */,
+				DE569576285864EF009F3DCE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DE56957D285864EF009F3DCE /* PBXTargetDependency */,
+			);
+			name = NaverMovieSearchTests;
+			productName = NaverMovieSearchTests;
+			productReference = DE569578285864EF009F3DCE /* NaverMovieSearchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -108,6 +323,10 @@
 				TargetAttributes = {
 					DE56952728584EC1009F3DCE = {
 						CreatedOnToolsVersion = 13.4;
+					};
+					DE569577285864EF009F3DCE = {
+						CreatedOnToolsVersion = 13.4;
+						TestTargetID = DE56952728584EC1009F3DCE;
 					};
 				};
 			};
@@ -128,6 +347,7 @@
 			projectRoot = "";
 			targets = (
 				DE56952728584EC1009F3DCE /* NaverMovieSearch */,
+				DE569577285864EF009F3DCE /* NaverMovieSearchTests */,
 			);
 		};
 /* End PBXProject section */
@@ -140,6 +360,14 @@
 				DE569552285854A2009F3DCE /* .swiftlint.yml in Resources */,
 				DE56953828584EC3009F3DCE /* LaunchScreen.storyboard in Resources */,
 				DE56953528584EC3009F3DCE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE569576285864EF009F3DCE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE56958A28586715009F3DCE /* MockSearchResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,13 +398,49 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE56953028584EC1009F3DCE /* ViewController.swift in Sources */,
+				DEDF032A285A0AEC000F7915 /* CellItem.swift in Sources */,
+				DE5695702858607F009F3DCE /* NaverMovieAPI.swift in Sources */,
+				DE56956628585F9C009F3DCE /* APIProtocol.swift in Sources */,
+				DE56956428585F7E009F3DCE /* URLSessionProtocol.swift in Sources */,
+				DE56956828585FC9009F3DCE /* NetworkProvider.swift in Sources */,
+				DE56959F285947CD009F3DCE /* ImageCacheManager.swift in Sources */,
+				DE5695A12859481B009F3DCE /* UIImage+LoadCachedImage.swift in Sources */,
+				DE56956E28586048009F3DCE /* JSONParser.swift in Sources */,
+				DE56959A2858DA44009F3DCE /* MovieListCell.swift in Sources */,
+				DE5695A328595417009F3DCE /* String+Replace.swift in Sources */,
+				DE56955F2858571D009F3DCE /* AppCoordinator.swift in Sources */,
+				DE56959C2858E333009F3DCE /* MovieSearchViewModel.swift in Sources */,
+				DE56955D285856B2009F3DCE /* CoordinatorDescribing.swift in Sources */,
+				DE569573285863CC009F3DCE /* SearchResult.swift in Sources */,
+				DE56953028584EC1009F3DCE /* MovieSearchViewController.swift in Sources */,
+				DE56956B28586001009F3DCE /* URLRequest+Initializer.swift in Sources */,
 				DE56952C28584EC1009F3DCE /* AppDelegate.swift in Sources */,
+				DE5695982858DA06009F3DCE /* UICollectionView+Register.swift in Sources */,
+				DE5695612858591B009F3DCE /* SearchCoordinator.swift in Sources */,
 				DE56952E28584EC1009F3DCE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DE569574285864EF009F3DCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE5695942858D47A009F3DCE /* MockURLSession.swift in Sources */,
+				DE56958C2858674D009F3DCE /* JSONParserTests.swift in Sources */,
+				DE569586285865B0009F3DCE /* NetworkProviderTests.swift in Sources */,
+				DE5695962858D51B009F3DCE /* MockNetworkProviderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DE56957D285864EF009F3DCE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE56952728584EC1009F3DCE /* NaverMovieSearch */;
+			targetProxy = DE56957C285864EF009F3DCE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DE56953628584EC3009F3DCE /* LaunchScreen.storyboard */ = {
@@ -240,7 +504,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -294,7 +558,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -358,6 +622,42 @@
 			};
 			name = Release;
 		};
+		DE56957F285864EF009F3DCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FA464JRW3F;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hojoon.NaverMovieSearchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NaverMovieSearch.app/NaverMovieSearch";
+			};
+			name = Debug;
+		};
+		DE569580285864EF009F3DCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FA464JRW3F;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hojoon.NaverMovieSearchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NaverMovieSearch.app/NaverMovieSearch";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -375,6 +675,15 @@
 			buildConfigurations = (
 				DE56953D28584EC3009F3DCE /* Debug */,
 				DE56953E28584EC3009F3DCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE56957E285864EF009F3DCE /* Build configuration list for PBXNativeTarget "NaverMovieSearchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE56957F285864EF009F3DCE /* Debug */,
+				DE569580285864EF009F3DCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
