@@ -63,7 +63,6 @@ class MovieListCell: UICollectionViewCell {
         return button
     }()
     private var item: CellItem!
-    private var starButtonTapped = false
     weak var delegate: MovieListCellDelegate!
     
     // MARK: - Initializers
@@ -101,7 +100,6 @@ class MovieListCell: UICollectionViewCell {
         actorsLabel.text = "출연: \(item.movie.actor.replaceWord)"
         userRatingLabel.text = "평점: \(item.movie.userRating.replaceWord)"
         
-        print((item.movie.title, item.isSelected))
         if item.isSelected {
             starButton.tintColor = .systemYellow
         } else {
@@ -149,15 +147,13 @@ class MovieListCell: UICollectionViewCell {
     @objc
     private func tapStarButton() {
         if starButton.tintColor == .systemGray {
-            starButtonTapped = true
             starButton.tintColor = .systemYellow
             item.isSelected = true
-            delegate.starButtonDidTap(at: self, isSelected: starButtonTapped)
+            delegate.starButtonDidTap(at: self, isSelected: item.isSelected)
         } else {
-            starButtonTapped = false
             starButton.tintColor = .systemGray
             item.isSelected = false
-            delegate.starButtonDidTap(at: self, isSelected: starButtonTapped)
+            delegate.starButtonDidTap(at: self, isSelected: item.isSelected)
         }
     }
     
