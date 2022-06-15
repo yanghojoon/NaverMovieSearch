@@ -36,6 +36,7 @@
 		DE56959F285947CD009F3DCE /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56959E285947CD009F3DCE /* ImageCacheManager.swift */; };
 		DE5695A12859481B009F3DCE /* UIImage+LoadCachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695A02859481B009F3DCE /* UIImage+LoadCachedImage.swift */; };
 		DE5695A328595417009F3DCE /* String+Replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695A228595417009F3DCE /* String+Replace.swift */; };
+		DEDF032A285A0AEC000F7915 /* CellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF0329285A0AEC000F7915 /* CellItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		DE56959E285947CD009F3DCE /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		DE5695A02859481B009F3DCE /* UIImage+LoadCachedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+LoadCachedImage.swift"; sourceTree = "<group>"; };
 		DE5695A228595417009F3DCE /* String+Replace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Replace.swift"; sourceTree = "<group>"; };
+		DEDF0329285A0AEC000F7915 /* CellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				DE569572285863CC009F3DCE /* SearchResult.swift */,
+				DEDF0329285A0AEC000F7915 /* CellItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEDF032A285A0AEC000F7915 /* CellItem.swift in Sources */,
 				DE5695702858607F009F3DCE /* NaverMovieAPI.swift in Sources */,
 				DE56956628585F9C009F3DCE /* APIProtocol.swift in Sources */,
 				DE56956428585F7E009F3DCE /* URLSessionProtocol.swift in Sources */,

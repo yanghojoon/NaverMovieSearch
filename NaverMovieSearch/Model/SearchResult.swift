@@ -6,7 +6,7 @@ struct SearchResult: Decodable {
     
 }
 
-struct Movie: Decodable {
+struct Movie: Decodable, Equatable {
     
     let title: String
     let link: String

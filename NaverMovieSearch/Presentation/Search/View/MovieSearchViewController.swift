@@ -17,7 +17,8 @@ final class MovieSearchViewController: UIViewController {
     private var viewModel: MovieSearchViewModel?
     private let listCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private let textFieldDidReturn = PublishSubject<String>()
-    private let disposeBag = DisposeBag()
+    private let favoriteMovie = PublishSubject<(Movie, Bool)>()
+    private var disposeBag = DisposeBag()
     
     // MARK: - Initializers
     convenience init(viewModel: MovieSearchViewModel) {
@@ -44,8 +45,24 @@ final class MovieSearchViewController: UIViewController {
             label.textAlignment = .left
             return label
         }()
+        let favoriteButton: UIButton = {
+            let button = UIButton()
+            button.backgroundColor = .white
+            button.setImage(UIImage(systemName: "star.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            button.tintColor = .systemYellow
+            button.setTitle("즐겨찾기", for: .normal)
+            button.setTitleColor(.label, for: .normal)
+            button.layer.cornerRadius = 5
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.systemGray4.cgColor
+            button.clipsToBounds = true
+            button.widthAnchor.constraint(equalToConstant: button.intrinsicContentSize.width + 10).isActive = true
+            button.heightAnchor.constraint(equalToConstant: button.intrinsicContentSize.height + 5).isActive = true
+            return button
+        }()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: favoriteButton)
     }
     
     private func configureUI() {
@@ -118,27 +135,45 @@ final class MovieSearchViewController: UIViewController {
 extension MovieSearchViewController {
     
     private func bind() {
-        let input = MovieSearchViewModel.Input(textFieldDidReturn: textFieldDidReturn.asObservable())
+        let input = MovieSearchViewModel.Input(
+            textFieldDidReturn: textFieldDidReturn.asObservable(),
+            favoriteMovie: favoriteMovie.asObservable()
+        )
         guard let output = viewModel?.transform(input) else { return }
         
         configureListCollectionView(with: output.movieList)
     }
     
-    private func configureListCollectionView(with movieList: Observable<[Movie]>) {
+    private func configureListCollectionView(with movieList: Observable<[CellItem]>) {
         movieList
-            .bind(to: listCollectionView.rx.items(
-                cellIdentifier: String(describing: MovieListCell.self),
-                cellType: MovieListCell.self
-            )) { _, item, cell in
-                cell.apply(
-                    imageURL: item.image,
-                    title: item.title,
-                    director: item.director,
-                    actors: item.actor,
-                    userRating: item.userRating
-                )
+            .bind(to: listCollectionView.rx.items) { collectionView, row, item in
+                guard let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: String(describing: MovieListCell.self),
+                    for: IndexPath(row: row, section: .zero)) as? MovieListCell
+                else {
+                    return UICollectionViewCell()
+                }
+                
+                cell.apply(item: item)
+                cell.delegate = self
+                
+                return cell
             }
             .disposed(by: disposeBag)
+    }
+    
+}
+
+// MARK: - MovieListCell Delegate
+extension MovieSearchViewController: MovieListCellDelegate {
+    
+    func starButtonDidTap(at cell: MovieListCell, isSelected: Bool) {
+        guard let indexPath = listCollectionView.indexPath(for: cell),
+              let selectedCell = listCollectionView.cellForItem(at: indexPath) as? MovieListCell else {
+            return
+        }
+        
+        favoriteMovie.onNext((selectedCell.makeMovieItem(), isSelected))
     }
     
 }
