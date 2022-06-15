@@ -53,6 +53,7 @@ class MovieListCell: UICollectionViewCell {
         button.setImage(UIImage(systemName: "star.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.tintColor = .systemGray
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        button.setContentCompressionResistancePriority(.required, for: .horizontal)
         return button
     }()
     
