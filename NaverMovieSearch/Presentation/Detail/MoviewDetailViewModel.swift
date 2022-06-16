@@ -12,13 +12,13 @@ final class MovieDetailViewModel {
     
     // MARK: - Properties
     private let movie: CellItem
-    private let disposeBag = DisposeBag()
     
     // MARK: - Initializers
     init(movie: CellItem) {
         self.movie = movie
     }
     
+    // MARK: - Methods
     func transform() -> Output {
         let movieInformation = configureMovieInformation()
         let ouput = Output(movieInformation: movieInformation)

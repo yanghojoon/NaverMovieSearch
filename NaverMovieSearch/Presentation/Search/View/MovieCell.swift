@@ -2,11 +2,11 @@ import UIKit
 
 protocol MovieListCellDelegate: AnyObject {
     
-    func starButtonDidTap(at cell: MovieListCell, isSelected: Bool)
+    func starButtonDidTap(at cell: MovieCell, isSelected: Bool)
     
 }
 
-class MovieListCell: UICollectionViewCell {
+class MovieCell: UICollectionViewCell {
     
     // MARK: - Properties
     private let containerStackView: UIStackView = {
@@ -165,7 +165,7 @@ class MovieListCell: UICollectionViewCell {
 }
 
 // MARK: - NameSpaces
-extension MovieListCell {
+extension MovieCell {
     
     private enum Design {
         

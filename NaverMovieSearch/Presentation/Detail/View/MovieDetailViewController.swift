@@ -17,10 +17,10 @@ class MovieDetailViewController: UIViewController {
         collectionViewLayout: UICollectionViewLayout()
     )
     private let detailWebView = WKWebView()
+    private let disposeBag = DisposeBag()
     private var viewModel: MovieDetailViewModel!
     private var coordinator: DetailCoordinator!
     private var selectedIndexPath: IndexPath!
-    private let disposeBag = DisposeBag()
     
     // MARK: - Initializers
     convenience init(viewModel: MovieDetailViewModel, selectedIndexPath: IndexPath, coordinator: DetailCoordinator) {
@@ -74,7 +74,7 @@ class MovieDetailViewController: UIViewController {
     
     private func configureCollectionView() {
         informationCollectionview.translatesAutoresizingMaskIntoConstraints = false
-        informationCollectionview.register(cellClass: MovieListCell.self)
+        informationCollectionview.register(cellClass: MovieCell.self)
         informationCollectionview.collectionViewLayout = createCollectionViewLayout()
     }
     
@@ -109,6 +109,7 @@ class MovieDetailViewController: UIViewController {
 
 // MARK: - Binding Methods
 extension MovieDetailViewController {
+    
     private func bind() {
         let output = viewModel.transform()
         
@@ -118,8 +119,8 @@ extension MovieDetailViewController {
     private func configureMovieDetailContent(with movieInformation: Observable<[CellItem]>) {
         movieInformation
             .bind(to: informationCollectionview.rx.items(
-                cellIdentifier: String(describing: MovieListCell.self),
-                cellType: MovieListCell.self
+                cellIdentifier: String(describing: MovieCell.self),
+                cellType: MovieCell.self
             )) { [weak self] _, item, cell in
                 cell.delegate = self
                 cell.apply(item: item)
@@ -136,11 +137,12 @@ extension MovieDetailViewController {
             detailWebView.load(urlRequest)
         }
     }
+    
 }
 
 extension MovieDetailViewController: MovieListCellDelegate {
     
-    func starButtonDidTap(at cell: MovieListCell, isSelected: Bool) {
+    func starButtonDidTap(at cell: MovieCell, isSelected: Bool) {
         delegate.starButtonDidTap(at: selectedIndexPath, isSelected: isSelected)
     }
     
