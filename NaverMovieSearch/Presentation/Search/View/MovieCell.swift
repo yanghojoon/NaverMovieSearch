@@ -2,11 +2,11 @@ import UIKit
 
 protocol MovieListCellDelegate: AnyObject {
     
-    func starButtonDidTap(at cell: MovieListCell, isSelected: Bool)
+    func starButtonDidTap(at cell: MovieCell, isSelected: Bool)
     
 }
 
-class MovieListCell: UICollectionViewCell {
+class MovieCell: UICollectionViewCell {
     
     // MARK: - Properties
     private let containerStackView: UIStackView = {
@@ -32,6 +32,7 @@ class MovieListCell: UICollectionViewCell {
     private let descriptionStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.distribution = .fillEqually
         return stackView
     }()
     private let titleLabel: UILabel = {
@@ -120,6 +121,10 @@ class MovieListCell: UICollectionViewCell {
         return movie
     }
     
+    func hideTitleLablel() {
+        titleLabel.isHidden = true
+    }
+    
     private func configureUI() {
         self.backgroundColor = .white
         self.addSubview(containerStackView)
@@ -159,7 +164,8 @@ class MovieListCell: UICollectionViewCell {
     
 }
 
-extension MovieListCell {
+// MARK: - NameSpaces
+extension MovieCell {
     
     private enum Design {
         

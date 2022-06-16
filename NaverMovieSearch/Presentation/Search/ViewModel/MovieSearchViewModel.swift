@@ -8,6 +8,8 @@ final class MovieSearchViewModel {
         
         let textFieldDidReturn: Observable<String>
         let favoriteMovie: Observable<(Movie, Bool)>
+        let selectedItem: Observable<CellItem>
+        let selectedIndexPath: Observable<IndexPath>
         
     }
     
@@ -19,13 +21,21 @@ final class MovieSearchViewModel {
     
     // MARK: - Properties
     private var favoriteMovies: [Movie] = []
+    private let coordinator: SearchCoordinator?
     private let disposeBag = DisposeBag()
+    
+    // MARK: - Initializers
+    init(coordinator: SearchCoordinator) {
+        self.coordinator = coordinator
+    }
     
     // MARK: - Methods
     func transform(_ input: Input) -> Output {
-        configureFavoriteMovies(with: input.favoriteMovie)
         let movieList = configureMovieList(with: input.textFieldDidReturn)
         let ouput = Output(movieList: movieList)
+        
+        configureFavoriteMovies(with: input.favoriteMovie)
+        configureSelectedCellDetailWith(item: input.selectedItem, indexPath: input.selectedIndexPath)
         
         return ouput
     }
@@ -81,7 +91,16 @@ final class MovieSearchViewModel {
                 }
             })
             .disposed(by: disposeBag)
-            
+    }
+    
+    private func configureSelectedCellDetailWith(item: Observable<CellItem>, indexPath: Observable<IndexPath>) {
+        Observable.zip(item, indexPath)
+            .withUnretained(self)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { (self, cellInformation) in
+                self.coordinator?.showDetailPage(with: cellInformation)
+            })
+            .disposed(by: disposeBag)
     }
     
 }

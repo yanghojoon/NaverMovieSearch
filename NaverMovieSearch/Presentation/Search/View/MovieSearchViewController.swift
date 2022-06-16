@@ -14,11 +14,14 @@ final class MovieSearchViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
-    private var viewModel: MovieSearchViewModel?
-    private let listCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    private let listCollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: UICollectionViewLayout()
+    )
     private let textFieldDidReturn = PublishSubject<String>()
     private let favoriteMovie = PublishSubject<(Movie, Bool)>()
-    private var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
+    private var viewModel: MovieSearchViewModel?
     
     // MARK: - Initializers
     convenience init(viewModel: MovieSearchViewModel) {
@@ -36,6 +39,11 @@ final class MovieSearchViewController: UIViewController {
         bind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        listCollectionView.reloadData()
+    }
+    
     // MARK: - Methods
     private func configureNavigationBar() {
         let titleLabel: UILabel = {
@@ -48,19 +56,19 @@ final class MovieSearchViewController: UIViewController {
         let favoriteButton: UIButton = {
             let button = UIButton()
             button.backgroundColor = .white
-            button.setImage(UIImage(systemName: "star.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            button.setImage(Design.favoriteButtonImage?.withRenderingMode(.alwaysTemplate), for: .normal)
             button.tintColor = .systemYellow
-            button.setTitle("즐겨찾기", for: .normal)
+            button.setTitle(Design.favoriteButtonTitle, for: .normal)
             button.setTitleColor(.label, for: .normal)
-            button.layer.cornerRadius = 5
-            button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor.systemGray4.cgColor
+            button.layer.cornerRadius = Design.favoriteButtonCornerRadius
+            button.layer.borderWidth = Design.favoriteButtonBorderWidth
+            button.layer.borderColor = Design.favoriteButtonBorderColor
             button.clipsToBounds = true
             button.widthAnchor.constraint(equalToConstant: button.intrinsicContentSize.width + 10).isActive = true
             button.heightAnchor.constraint(equalToConstant: button.intrinsicContentSize.height + 5).isActive = true
             return button
         }()
-        
+        navigationItem.backButtonTitle = Design.backButtonTitle
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: favoriteButton)
     }
@@ -87,7 +95,7 @@ final class MovieSearchViewController: UIViewController {
     
     private func configureCollectionView() {
         listCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        listCollectionView.register(cellClass: MovieListCell.self)
+        listCollectionView.register(cellClass: MovieCell.self)
         listCollectionView.collectionViewLayout = createCollectionViewLayout()
         listCollectionView.backgroundColor = .systemGray6
     }
@@ -104,7 +112,7 @@ final class MovieSearchViewController: UIViewController {
             item.contentInsets = NSDirectionalEdgeInsets(top: 0.5, leading: 0, bottom: 0.5, trailing: 0)
             
             var groupSize: NSCollectionLayoutSize
-            if screenHeight < 750 {
+            if screenHeight < Design.deviceHeightStandard {
                 groupSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
                     heightDimension: .fractionalHeight(0.2)
@@ -137,7 +145,9 @@ extension MovieSearchViewController {
     private func bind() {
         let input = MovieSearchViewModel.Input(
             textFieldDidReturn: textFieldDidReturn.asObservable(),
-            favoriteMovie: favoriteMovie.asObservable()
+            favoriteMovie: favoriteMovie.asObservable(),
+            selectedItem: listCollectionView.rx.modelSelected(CellItem.self).asObservable(),
+            selectedIndexPath: listCollectionView.rx.itemSelected.asObservable()
         )
         guard let output = viewModel?.transform(input) else { return }
         
@@ -148,8 +158,8 @@ extension MovieSearchViewController {
         movieList
             .bind(to: listCollectionView.rx.items) { collectionView, row, item in
                 guard let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: String(describing: MovieListCell.self),
-                    for: IndexPath(row: row, section: .zero)) as? MovieListCell
+                    withReuseIdentifier: String(describing: MovieCell.self),
+                    for: IndexPath(row: row, section: .zero)) as? MovieCell
                 else {
                     return UICollectionViewCell()
                 }
@@ -164,12 +174,20 @@ extension MovieSearchViewController {
     
 }
 
-// MARK: - MovieListCell Delegate
-extension MovieSearchViewController: MovieListCellDelegate {
+// MARK: - StarButtonDidTap Delegate
+extension MovieSearchViewController: MovieListCellDelegate, MovieDetailViewControllerDelegate {
     
-    func starButtonDidTap(at cell: MovieListCell, isSelected: Bool) {
+    // MovieDetailViewController Delegate
+    func starButtonDidTap(at indexPath: IndexPath, isSelected: Bool) {
+        guard let selectedCell = listCollectionView.cellForItem(at: indexPath) as? MovieCell else { return }
+        
+        favoriteMovie.onNext((selectedCell.makeMovieItem(), isSelected))
+    }
+    
+    // MovieListCell Delegate
+    func starButtonDidTap(at cell: MovieCell, isSelected: Bool) {
         guard let indexPath = listCollectionView.indexPath(for: cell),
-              let selectedCell = listCollectionView.cellForItem(at: indexPath) as? MovieListCell else {
+              let selectedCell = listCollectionView.cellForItem(at: indexPath) as? MovieCell else {
             return
         }
         
@@ -199,6 +217,15 @@ extension MovieSearchViewController {
         
         static let searchTextFieldPlaceHolder = "영화 제목을 검색해보세요!"
         static let titleText = "네이버 영화 검색"
+        
+        static let favoriteButtonImage = UIImage(systemName: "star.fill")
+        static let favoriteButtonTitle = "즐겨찾기"
+        static let favoriteButtonCornerRadius: CGFloat = 5
+        static let favoriteButtonBorderWidth: CGFloat = 1
+        static let favoriteButtonBorderColor = UIColor.systemGray4.cgColor
+        
+        static let backButtonTitle = ""
+        static let deviceHeightStandard: CGFloat = 750
         
     }
     
