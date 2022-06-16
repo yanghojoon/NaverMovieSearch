@@ -36,6 +36,11 @@ final class MovieSearchViewController: UIViewController {
         bind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        listCollectionView.reloadData()
+    }
+    
     // MARK: - Methods
     private func configureNavigationBar() {
         let titleLabel: UILabel = {
@@ -60,7 +65,7 @@ final class MovieSearchViewController: UIViewController {
             button.heightAnchor.constraint(equalToConstant: button.intrinsicContentSize.height + 5).isActive = true
             return button
         }()
-        
+        navigationItem.backButtonTitle = ""
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: favoriteButton)
     }
@@ -137,7 +142,9 @@ extension MovieSearchViewController {
     private func bind() {
         let input = MovieSearchViewModel.Input(
             textFieldDidReturn: textFieldDidReturn.asObservable(),
-            favoriteMovie: favoriteMovie.asObservable()
+            favoriteMovie: favoriteMovie.asObservable(),
+            selectedItem: listCollectionView.rx.modelSelected(CellItem.self).asObservable(),
+            selectedIndexPath: listCollectionView.rx.itemSelected.asObservable()
         )
         guard let output = viewModel?.transform(input) else { return }
         
@@ -164,9 +171,17 @@ extension MovieSearchViewController {
     
 }
 
-// MARK: - MovieListCell Delegate
-extension MovieSearchViewController: MovieListCellDelegate {
+// MARK: - StarButtonDidTap Delegate
+extension MovieSearchViewController: MovieListCellDelegate, MovieDetailViewControllerDelegate {
     
+    // MovieDetailViewController Delegate
+    func starButtonDidTap(at indexPath: IndexPath, isSelected: Bool) {
+        guard let selectedCell = listCollectionView.cellForItem(at: indexPath) as? MovieListCell else { return }
+        
+        favoriteMovie.onNext((selectedCell.makeMovieItem(), isSelected))
+    }
+    
+    // MovieListCell Delegate
     func starButtonDidTap(at cell: MovieListCell, isSelected: Bool) {
         guard let indexPath = listCollectionView.indexPath(for: cell),
               let selectedCell = listCollectionView.cellForItem(at: indexPath) as? MovieListCell else {

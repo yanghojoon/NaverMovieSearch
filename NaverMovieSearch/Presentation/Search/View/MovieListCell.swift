@@ -32,6 +32,7 @@ class MovieListCell: UICollectionViewCell {
     private let descriptionStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.distribution = .fillEqually
         return stackView
     }()
     private let titleLabel: UILabel = {
@@ -120,6 +121,10 @@ class MovieListCell: UICollectionViewCell {
         return movie
     }
     
+    func hideTitleLablel() {
+        titleLabel.isHidden = true
+    }
+    
     private func configureUI() {
         self.backgroundColor = .white
         self.addSubview(containerStackView)
@@ -159,6 +164,7 @@ class MovieListCell: UICollectionViewCell {
     
 }
 
+// MARK: - NameSpaces
 extension MovieListCell {
     
     private enum Design {

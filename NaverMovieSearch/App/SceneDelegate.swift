@@ -20,7 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = navigationController
         
         appCoordinator = AppCoordinator(navigationController: navigationController)
-        appCoordinator?.start()
+        guard let appCoordinator = appCoordinator as? AppCoordinator else { return }
+
+        appCoordinator.start()
     }
 
 }

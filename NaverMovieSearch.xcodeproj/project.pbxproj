@@ -37,6 +37,9 @@
 		DE5695A12859481B009F3DCE /* UIImage+LoadCachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695A02859481B009F3DCE /* UIImage+LoadCachedImage.swift */; };
 		DE5695A328595417009F3DCE /* String+Replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5695A228595417009F3DCE /* String+Replace.swift */; };
 		DEDF032A285A0AEC000F7915 /* CellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF0329285A0AEC000F7915 /* CellItem.swift */; };
+		DEDF032E285A2F0A000F7915 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF032D285A2F0A000F7915 /* DetailCoordinator.swift */; };
+		DEDF0334285A3419000F7915 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF0333285A3419000F7915 /* MovieDetailViewController.swift */; };
+		DEDF0336285AABFC000F7915 /* MoviewDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF0335285AABFC000F7915 /* MoviewDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,9 @@
 		DE5695A02859481B009F3DCE /* UIImage+LoadCachedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+LoadCachedImage.swift"; sourceTree = "<group>"; };
 		DE5695A228595417009F3DCE /* String+Replace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Replace.swift"; sourceTree = "<group>"; };
 		DEDF0329285A0AEC000F7915 /* CellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellItem.swift; sourceTree = "<group>"; };
+		DEDF032D285A2F0A000F7915 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
+		DEDF0333285A3419000F7915 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		DEDF0335285AABFC000F7915 /* MoviewDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviewDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +158,7 @@
 			children = (
 				DE56955E2858571D009F3DCE /* AppCoordinator.swift */,
 				DE5695552858561E009F3DCE /* Search */,
+				DEDF032C285A2D91000F7915 /* Detail */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -266,6 +273,32 @@
 				DE56959E285947CD009F3DCE /* ImageCacheManager.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		DEDF032C285A2D91000F7915 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				DEDF032D285A2F0A000F7915 /* DetailCoordinator.swift */,
+				DEDF032F285A2F16000F7915 /* View */,
+				DEDF0330285A2F1D000F7915 /* ViewModel */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		DEDF032F285A2F16000F7915 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DEDF0333285A3419000F7915 /* MovieDetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DEDF0330285A2F1D000F7915 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DEDF0335285AABFC000F7915 /* MoviewDetailViewModel.swift */,
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -398,6 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEDF032E285A2F0A000F7915 /* DetailCoordinator.swift in Sources */,
 				DEDF032A285A0AEC000F7915 /* CellItem.swift in Sources */,
 				DE5695702858607F009F3DCE /* NaverMovieAPI.swift in Sources */,
 				DE56956628585F9C009F3DCE /* APIProtocol.swift in Sources */,
@@ -416,7 +450,9 @@
 				DE56956B28586001009F3DCE /* URLRequest+Initializer.swift in Sources */,
 				DE56952C28584EC1009F3DCE /* AppDelegate.swift in Sources */,
 				DE5695982858DA06009F3DCE /* UICollectionView+Register.swift in Sources */,
+				DEDF0336285AABFC000F7915 /* MoviewDetailViewModel.swift in Sources */,
 				DE5695612858591B009F3DCE /* SearchCoordinator.swift in Sources */,
+				DEDF0334285A3419000F7915 /* MovieDetailViewController.swift in Sources */,
 				DE56952E28584EC1009F3DCE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
