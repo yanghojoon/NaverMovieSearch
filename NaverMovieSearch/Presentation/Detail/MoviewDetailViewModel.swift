@@ -21,9 +21,9 @@ final class MovieDetailViewModel {
     // MARK: - Methods
     func transform() -> Output {
         let movieInformation = configureMovieInformation()
-        let ouput = Output(movieInformation: movieInformation)
+        let output = Output(movieInformation: movieInformation)
         
-        return ouput
+        return output
     }
     
     private func configureMovieInformation() -> Observable<[CellItem]> {

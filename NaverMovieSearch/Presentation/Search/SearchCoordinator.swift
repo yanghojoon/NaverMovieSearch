@@ -28,10 +28,18 @@ final class SearchCoordinator: CoordinatorDescribing {
         detailCoordinator.start(with: information, delegatee: movieSearchViewController)
     }
     
+    func showFavoritesPage(with favoriteMovies: [Movie]) {
+        let favoritesCoordinator = FavoritesCoordinator(navigationController: navigationController)
+        childCoordinators.append(favoritesCoordinator)
+        favoritesCoordinator.delegate = self
+        
+        favoritesCoordinator.start(with: favoriteMovies)
+    }
+    
 }
 
 // MARK: - DetailCoordinator Delegate
-extension SearchCoordinator: DetailCoordinatorDelegate {
+extension SearchCoordinator: ChildCoordinatorDelegate {
     
     func removeFromChildCoordinators(coordinator: CoordinatorDescribing) {
         let updatedChildCoordinators = childCoordinators.filter { $0 !== coordinator }

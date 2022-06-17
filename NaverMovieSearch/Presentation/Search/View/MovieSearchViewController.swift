@@ -18,6 +18,21 @@ final class MovieSearchViewController: UIViewController {
         frame: .zero,
         collectionViewLayout: UICollectionViewLayout()
     )
+    private let favoriteButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.setImage(Design.favoriteButtonImage?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .systemYellow
+        button.setTitle(Design.favoriteButtonTitle, for: .normal)
+        button.setTitleColor(.label, for: .normal)
+        button.layer.cornerRadius = Design.favoriteButtonCornerRadius
+        button.layer.borderWidth = Design.favoriteButtonBorderWidth
+        button.layer.borderColor = Design.favoriteButtonBorderColor
+        button.clipsToBounds = true
+        button.widthAnchor.constraint(equalToConstant: button.intrinsicContentSize.width + 10).isActive = true
+        button.heightAnchor.constraint(equalToConstant: button.intrinsicContentSize.height + 5).isActive = true
+        return button
+    }()
     private let textFieldDidReturn = PublishSubject<String>()
     private let favoriteMovie = PublishSubject<(Movie, Bool)>()
     private let disposeBag = DisposeBag()
@@ -53,22 +68,8 @@ final class MovieSearchViewController: UIViewController {
             label.textAlignment = .left
             return label
         }()
-        let favoriteButton: UIButton = {
-            let button = UIButton()
-            button.backgroundColor = .white
-            button.setImage(Design.favoriteButtonImage?.withRenderingMode(.alwaysTemplate), for: .normal)
-            button.tintColor = .systemYellow
-            button.setTitle(Design.favoriteButtonTitle, for: .normal)
-            button.setTitleColor(.label, for: .normal)
-            button.layer.cornerRadius = Design.favoriteButtonCornerRadius
-            button.layer.borderWidth = Design.favoriteButtonBorderWidth
-            button.layer.borderColor = Design.favoriteButtonBorderColor
-            button.clipsToBounds = true
-            button.widthAnchor.constraint(equalToConstant: button.intrinsicContentSize.width + 10).isActive = true
-            button.heightAnchor.constraint(equalToConstant: button.intrinsicContentSize.height + 5).isActive = true
-            return button
-        }()
         navigationItem.backButtonTitle = Design.backButtonTitle
+        navigationController?.navigationBar.tintColor = Design.navigationBarTintColor
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: favoriteButton)
     }
@@ -147,7 +148,8 @@ extension MovieSearchViewController {
             textFieldDidReturn: textFieldDidReturn.asObservable(),
             favoriteMovie: favoriteMovie.asObservable(),
             selectedItem: listCollectionView.rx.modelSelected(CellItem.self).asObservable(),
-            selectedIndexPath: listCollectionView.rx.itemSelected.asObservable()
+            selectedIndexPath: listCollectionView.rx.itemSelected.asObservable(),
+            favoriteButtonDidTap: favoriteButton.rx.tap.asObservable()
         )
         guard let output = viewModel?.transform(input) else { return }
         
@@ -210,7 +212,7 @@ extension MovieSearchViewController: UITextFieldDelegate {
     
 }
 
-// MARK: - Namespaces
+// MARK: - NameSpaces
 extension MovieSearchViewController {
     
     private enum Design {
@@ -224,6 +226,7 @@ extension MovieSearchViewController {
         static let favoriteButtonBorderWidth: CGFloat = 1
         static let favoriteButtonBorderColor = UIColor.systemGray4.cgColor
         
+        static let navigationBarTintColor: UIColor = .systemGray
         static let backButtonTitle = ""
         static let deviceHeightStandard: CGFloat = 750
         

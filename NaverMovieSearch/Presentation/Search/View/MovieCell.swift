@@ -24,7 +24,7 @@ class MovieCell: UICollectionViewCell {
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
-    private let thumnailImageView: UIImageView = {
+    private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -80,7 +80,7 @@ class MovieCell: UICollectionViewCell {
     // MARK: - Lifecycle Methods
     override func prepareForReuse() {
         super.prepareForReuse()
-        thumnailImageView.image = nil
+        thumbnailImageView.image = nil
         titleLabel.text = nil
         directorLabel.text = nil
         actorsLabel.text = nil
@@ -92,9 +92,9 @@ class MovieCell: UICollectionViewCell {
     func apply(item: CellItem) {
         self.item = item
         if item.movie.image == "" {
-            thumnailImageView.image = UIImage(systemName: "photo.on.rectangle.angled")
+            thumbnailImageView.image = UIImage(systemName: "photo.on.rectangle.angled")
         } else {
-            thumnailImageView.loadCachedImage(of: item.movie.image)
+            thumbnailImageView.loadCachedImage(of: item.movie.image)
         }
         titleLabel.text = item.movie.title.replaceWord
         directorLabel.text = "감독: \(item.movie.director.replaceWord)"
@@ -121,7 +121,7 @@ class MovieCell: UICollectionViewCell {
         return movie
     }
     
-    func hideTitleLablel() {
+    func hideTitleLabel() {
         titleLabel.isHidden = true
     }
     
@@ -130,7 +130,7 @@ class MovieCell: UICollectionViewCell {
         self.addSubview(containerStackView)
         starButton.addTarget(self, action: #selector(tapStarButton), for: .touchUpInside)
         
-        containerStackView.addArrangedSubview(thumnailImageView)
+        containerStackView.addArrangedSubview(thumbnailImageView)
         containerStackView.addArrangedSubview(descriptionStackView)
         containerStackView.addArrangedSubview(starButton)
         
@@ -144,8 +144,8 @@ class MovieCell: UICollectionViewCell {
             containerStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
             containerStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
             containerStackView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            thumnailImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.15),
-            thumnailImageView.heightAnchor.constraint(equalTo: descriptionStackView.heightAnchor)
+            thumbnailImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.15),
+            thumbnailImageView.heightAnchor.constraint(equalTo: descriptionStackView.heightAnchor)
         ])
     }
     

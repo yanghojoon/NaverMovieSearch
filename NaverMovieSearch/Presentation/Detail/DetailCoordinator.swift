@@ -1,17 +1,11 @@
 import UIKit
 
-protocol DetailCoordinatorDelegate: AnyObject {
-    
-    func removeFromChildCoordinators(coordinator: CoordinatorDescribing)
-    
-}
-
 final class DetailCoordinator: CoordinatorDescribing {
     
     // MARK: - Properties
     var childCoordinators: [CoordinatorDescribing] = []
     var navigationController: UINavigationController?
-    weak var delegate: DetailCoordinatorDelegate!
+    weak var delegate: ChildCoordinatorDelegate!
     
     // MARK: - Initializers
     init(navigationController: UINavigationController?) {
@@ -19,7 +13,10 @@ final class DetailCoordinator: CoordinatorDescribing {
     }
     
     // MARK: - Methods
-    func start(with item: (movie: CellItem, indexPath: IndexPath), delegatee: MovieSearchViewController) {
+    func start(
+        with item: (movie: CellItem, indexPath: IndexPath),
+        delegatee: MovieSearchViewController
+    ) {
         let movieDetailViewModel = MovieDetailViewModel(movie: item.movie)
         let movieDetailViewController = MovieDetailViewController(
             viewModel: movieDetailViewModel,

@@ -12,7 +12,7 @@ class MovieDetailViewController: UIViewController {
     
     // MARK: - Properties
     weak var delegate: MovieDetailViewControllerDelegate!
-    private let informationCollectionview = UICollectionView(
+    private let informationCollectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewLayout()
     )
@@ -55,17 +55,17 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func configureUI() {
-        view.addSubview(informationCollectionview)
+        view.addSubview(informationCollectionView)
         view.addSubview(detailWebView)
         detailWebView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            informationCollectionview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            informationCollectionview.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            informationCollectionview.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            informationCollectionview.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.15),
+            informationCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            informationCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            informationCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            informationCollectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.15),
             
-            detailWebView.topAnchor.constraint(equalTo: informationCollectionview.bottomAnchor),
+            detailWebView.topAnchor.constraint(equalTo: informationCollectionView.bottomAnchor),
             detailWebView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             detailWebView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             detailWebView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
@@ -73,9 +73,9 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func configureCollectionView() {
-        informationCollectionview.translatesAutoresizingMaskIntoConstraints = false
-        informationCollectionview.register(cellClass: MovieCell.self)
-        informationCollectionview.collectionViewLayout = createCollectionViewLayout()
+        informationCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        informationCollectionView.register(cellClass: MovieCell.self)
+        informationCollectionView.collectionViewLayout = createCollectionViewLayout()
     }
     
     private func createCollectionViewLayout() -> UICollectionViewLayout {
@@ -85,7 +85,6 @@ class MovieDetailViewController: UIViewController {
                 heightDimension: .fractionalHeight(1.0)
             )
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: 0.5, leading: 0, bottom: 0.5, trailing: 0)
             
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
@@ -118,13 +117,13 @@ extension MovieDetailViewController {
     
     private func configureMovieDetailContent(with movieInformation: Observable<[CellItem]>) {
         movieInformation
-            .bind(to: informationCollectionview.rx.items(
+            .bind(to: informationCollectionView.rx.items(
                 cellIdentifier: String(describing: MovieCell.self),
                 cellType: MovieCell.self
             )) { [weak self] _, item, cell in
                 cell.delegate = self
                 cell.apply(item: item)
-                cell.hideTitleLablel()
+                cell.hideTitleLabel()
                 self?.loadWebContent(url: item.movie.link)
                 self?.navigationItem.title = item.movie.title.replaceWord
             }
@@ -140,6 +139,7 @@ extension MovieDetailViewController {
     
 }
 
+// MARK: - Cell Delegate
 extension MovieDetailViewController: MovieListCellDelegate {
     
     func starButtonDidTap(at cell: MovieCell, isSelected: Bool) {
