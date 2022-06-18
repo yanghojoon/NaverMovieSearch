@@ -15,7 +15,7 @@ final class DetailCoordinator: CoordinatorDescribing {
     // MARK: - Methods
     func start(
         with item: (movie: CellItem, indexPath: IndexPath),
-        delegatee: MovieSearchViewController
+        delegatee: MovieSearchViewController?
     ) {
         let movieDetailViewModel = MovieDetailViewModel(movie: item.movie)
         let movieDetailViewController = MovieDetailViewController(

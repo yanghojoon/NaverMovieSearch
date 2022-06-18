@@ -143,7 +143,9 @@ extension MovieDetailViewController {
 extension MovieDetailViewController: MovieListCellDelegate {
     
     func starButtonDidTap(at cell: MovieCell, isSelected: Bool) {
-        delegate.starButtonDidTap(at: selectedIndexPath, isSelected: isSelected)
+        if delegate != nil {
+            delegate.starButtonDidTap(at: selectedIndexPath, isSelected: isSelected)
+        }
     }
     
 }

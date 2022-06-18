@@ -72,7 +72,7 @@ class FavoritesViewController: UIViewController {
             ) as? MovieCell else {
                 return UICollectionViewCell()
             }
-            cell.delegate = self
+            cell.makeStarButtonDisabled()
             cell.apply(item: item)
             
             return cell
@@ -124,10 +124,15 @@ class FavoritesViewController: UIViewController {
 extension FavoritesViewController {
     
     private func bind() {
-        let input = FavoritesViewModel.Input(cancelledIndexPath: cancelledIndexPath.asObservable())
+        let input = FavoritesViewModel.Input(
+            cancelledIndexPath: cancelledIndexPath.asObservable(),
+            selectedItem: listCollectionView.rx.modelSelected(CellItem.self).asObservable(),
+            selectedIndexPath: listCollectionView.rx.itemSelected.asObservable()
+        )
         let output = viewModel.transform(input)
         
         configureListCollectionView(with: output.sections)
+        showDetailPage(with: output.selectedInformation)
     }
     
     private func configureListCollectionView(with sections: Observable<[MovieSection]>) {
@@ -136,14 +141,13 @@ extension FavoritesViewController {
             .disposed(by: disposeBag)
     }
     
-}
-
-// MARK: - Cell Delegate
-extension FavoritesViewController: MovieListCellDelegate {
-    
-    func starButtonDidTap(at cell: MovieCell, isSelected: Bool) {
-        guard let indexPath = listCollectionView.indexPath(for: cell) else { return }
-        cancelledIndexPath.onNext(indexPath)
+    private func showDetailPage(with cellInformation: Observable<(CellItem, IndexPath)>) {
+        cellInformation
+            .withUnretained(self)
+            .subscribe(onNext: { (self, cellInformation) in
+                self.coordinator.showDetailPage(with: cellInformation)
+            })
+            .disposed(by: disposeBag)
     }
     
 }

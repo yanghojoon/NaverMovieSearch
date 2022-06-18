@@ -3,17 +3,24 @@ import RxSwift
 
 final class FavoritesViewModel {
     struct Input {
+        
         let cancelledIndexPath: Observable<IndexPath>
+        let selectedItem: Observable<CellItem>
+        let selectedIndexPath: Observable<IndexPath>
+        
     }
     
     struct Output {
+        
         let sections: Observable<[MovieSection]>
+        let selectedInformation: Observable<(CellItem, IndexPath)>
+        
     }
     
     // MARK: - Properties
-    private var favoriteMovies: [CellItem]
     private let sectionsSubject = BehaviorSubject<[MovieSection]>(value: [])
     private let disposeBag = DisposeBag()
+    private var favoriteMovies: [CellItem]
     
     // MARK: - Initializers
     init(favoriteMovies: [Movie]) {
@@ -23,9 +30,8 @@ final class FavoritesViewModel {
     func transform(_ input: Input) -> Output {
         makeSections()
         let sections = configureSections()
-        let output = Output(sections: sections)
-        
-        removeItem(with: input.cancelledIndexPath)
+        let selectedInformation = configureSelectedInformationWith(item: input.selectedItem, indexPath: input.selectedIndexPath)
+        let output = Output(sections: sections, selectedInformation: selectedInformation)
         
         return output
     }
@@ -42,20 +48,11 @@ final class FavoritesViewModel {
         sectionsSubject.onNext(sections)
     }
     
-    private func removeItem(with indexPath: Observable<IndexPath>) {
-        indexPath
-            .withUnretained(self)
-            .subscribe(onNext: { (self, indexPath) in
-                guard var sections = try? self.sectionsSubject.value() else { return }
-                var currentSection = sections[indexPath.section]
-                currentSection.items.remove(at: indexPath.row)
-                sections[indexPath.section] = currentSection
-                self.favoriteMovies = currentSection.items
-                print(self.favoriteMovies)
-                
-                self.sectionsSubject.onNext(sections)
-            })
-            .disposed(by: disposeBag)
+    private func configureSelectedInformationWith(
+        item: Observable<CellItem>,
+        indexPath: Observable<IndexPath>
+    ) -> Observable<(CellItem, IndexPath)> {
+        return Observable.zip(item, indexPath)
     }
     
 }
