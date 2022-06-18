@@ -98,7 +98,7 @@ final class MovieSearchViewController: UIViewController {
             listCollectionView.widthAnchor.constraint(equalTo: searchTextField.widthAnchor),
             listCollectionView.centerXAnchor.constraint(equalTo: searchTextField.centerXAnchor),
             listCollectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor),
-            listCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            listCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
     
@@ -203,6 +203,14 @@ extension MovieSearchViewController: MovieSearchViewModelDelegate {
     
     func stopLoadingActivityIndicator() {
         loadingActivityIndicator.stopAnimating()
+    }
+    
+    func showNoResultAlert() {
+        let alert = UIAlertController(title: "다시 검색해주세요", message: "검색 결과가 없습니다", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default)
+        alert.addAction(okAction)
+        
+        present(alert, animated: true)
     }
     
 }

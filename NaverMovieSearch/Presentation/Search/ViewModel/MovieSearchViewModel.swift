@@ -4,6 +4,7 @@ import RxSwift
 protocol MovieSearchViewModelDelegate: AnyObject {
     
     func stopLoadingActivityIndicator()
+    func showNoResultAlert()
     
 }
 
@@ -63,12 +64,17 @@ final class MovieSearchViewModel {
                 
                 let sections = self.fetchMovieData(from: searchKeyword, start: self.searchStart)
                     .flatMap { searchResult -> Observable<[MovieSection]> in
-                        
-                        let cellItems = self.createCellItem(from: searchResult.items)
-                        let sections = [
-                            MovieSection(header: "영화목록", items: cellItems)
-                        ]
-                        self.collectionViewDataSources.onNext(sections)
+                        if searchResult.items.count == .zero {
+                            DispatchQueue.main.async {
+                                self.delegate.showNoResultAlert()
+                            }
+                        } else {
+                            let cellItems = self.createCellItem(from: searchResult.items)
+                            let sections = [
+                                MovieSection(header: "영화목록", items: cellItems)
+                            ]
+                            self.collectionViewDataSources.onNext(sections)
+                        }
                         
                         DispatchQueue.main.async {
                             self.delegate.stopLoadingActivityIndicator()
