@@ -1,4 +1,5 @@
 import RxCocoa
+import RxDataSources
 import RxSwift
 import UIKit
 
@@ -36,8 +37,12 @@ final class MovieSearchViewController: UIViewController {
     private let loadingActivityIndicator = UIActivityIndicatorView()
     private let textFieldDidReturn = PublishSubject<String>()
     private let favoriteMovie = PublishSubject<(Movie, Bool)>()
+    private let collectionViewDidScroll = PublishSubject<IndexPath>()
     private let disposeBag = DisposeBag()
     private var viewModel: MovieSearchViewModel?
+    private var collectionViewDataSource: MovieSectionDataSource!
+
+    typealias MovieSectionDataSource = RxCollectionViewSectionedReloadDataSource<MovieSection>
     
     // MARK: - Initializers
     convenience init(viewModel: MovieSearchViewModel) {
@@ -48,6 +53,7 @@ final class MovieSearchViewController: UIViewController {
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel?.delegate = self
         configureNavigationBar()
         configureUI()
         configureTextField()
@@ -105,6 +111,25 @@ final class MovieSearchViewController: UIViewController {
         listCollectionView.register(cellClass: MovieCell.self)
         listCollectionView.collectionViewLayout = createCollectionViewLayout()
         listCollectionView.backgroundColor = .systemGray6
+        listCollectionView.delegate = self
+        collectionViewDataSource = createCollectionViewDataSource()
+    }
+    
+    private func createCollectionViewDataSource() -> MovieSectionDataSource {
+        let dataSource = MovieSectionDataSource { _, collectionView, indexPath, item -> UICollectionViewCell in
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: String(describing: MovieCell.self),
+                for: indexPath
+            ) as? MovieCell else {
+                return UICollectionViewCell()
+            }
+            cell.delegate = self
+            cell.apply(item: item)
+
+            return cell
+        }
+
+        return dataSource
     }
     
     private func createCollectionViewLayout() -> UICollectionViewLayout {
@@ -155,30 +180,29 @@ extension MovieSearchViewController {
             favoriteMovie: favoriteMovie.asObservable(),
             selectedItem: listCollectionView.rx.modelSelected(CellItem.self).asObservable(),
             selectedIndexPath: listCollectionView.rx.itemSelected.asObservable(),
-            favoriteButtonDidTap: favoriteButton.rx.tap.asObservable()
+            favoriteButtonDidTap: favoriteButton.rx.tap.asObservable(),
+            collectionViewDidScroll: collectionViewDidScroll.asObservable()
         )
         guard let output = viewModel?.transform(input) else { return }
         
         configureListCollectionView(with: output.movieList)
     }
     
-    private func configureListCollectionView(with movieList: Observable<[CellItem]>) {
+    private func configureListCollectionView(
+        with movieList: Observable<[MovieSection]>
+    ) {
         movieList
-            .bind(to: listCollectionView.rx.items) { [weak self] collectionView, row, item in
-                guard let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: String(describing: MovieCell.self),
-                    for: IndexPath(row: row, section: .zero)) as? MovieCell
-                else {
-                    return UICollectionViewCell()
-                }
-                
-                self?.loadingActivityIndicator.stopAnimating()
-                cell.apply(item: item)
-                cell.delegate = self
-                
-                return cell
-            }
+            .bind(to: listCollectionView.rx.items(dataSource: collectionViewDataSource))
             .disposed(by: disposeBag)
+    }
+    
+}
+
+// MARK: - MovieSearchViewModel Delegate
+extension MovieSearchViewController: MovieSearchViewModelDelegate {
+    
+    func stopLoadingActivityIndicator() {
+        loadingActivityIndicator.stopAnimating()
     }
     
 }
@@ -205,7 +229,7 @@ extension MovieSearchViewController: MovieListCellDelegate, MovieDetailViewContr
     
 }
 
-// MARK: - TexfField Delegate
+// MARK: - TextField Delegate
 extension MovieSearchViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -215,11 +239,25 @@ extension MovieSearchViewController: UITextFieldDelegate {
         view.endEditing(true)
         listCollectionView.setContentOffset(CGPoint.zero, animated: true)
         textFieldDidReturn.onNext(searchKeyword)
+        
         return true
     }
     
 }
 
+// MARK: - CollectionView Delegate
+extension MovieSearchViewController: UICollectionViewDelegate {
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        willDisplay cell: UICollectionViewCell,
+        forItemAt indexPath: IndexPath
+    ) {
+        collectionViewDidScroll.onNext(indexPath)
+    }
+
+}
+    
 // MARK: - NameSpaces
 extension MovieSearchViewController {
     

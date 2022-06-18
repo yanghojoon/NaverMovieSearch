@@ -2,4 +2,4 @@ disabled_rules:
 - trailing_whitespace
 - xctfail_message
 
-line_length: 125
+line_length: 130
