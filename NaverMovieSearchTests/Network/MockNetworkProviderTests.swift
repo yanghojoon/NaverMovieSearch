@@ -2,7 +2,7 @@ import RxSwift
 import XCTest
 @testable import NaverMovieSearch
 
-class MockNetworkProviderTests: XCTestCase {
+final class MockNetworkProviderTests: XCTestCase {
     
     // MARK: - Properties
     let mockURLSession: URLSessionProtocol = MockURLSession()

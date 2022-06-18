@@ -8,7 +8,7 @@ protocol MovieDetailViewControllerDelegate: AnyObject {
     
 }
 
-class MovieDetailViewController: UIViewController {
+final class MovieDetailViewController: UIViewController {
     
     // MARK: - Properties
     weak var delegate: MovieDetailViewControllerDelegate!
@@ -38,22 +38,12 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
         bind()
         configureUI()
         configureCollectionView()
     }
     
     // MARK: - Methods
-    private func configureNavigationBar() {
-        let backButton: UIButton = {
-            let button = UIButton()
-            button.setTitle("", for: .normal)
-            return button
-        }()
-        navigationItem.backBarButtonItem = UIBarButtonItem(customView: backButton)
-    }
-    
     private func configureUI() {
         view.addSubview(informationCollectionView)
         view.addSubview(detailWebView)

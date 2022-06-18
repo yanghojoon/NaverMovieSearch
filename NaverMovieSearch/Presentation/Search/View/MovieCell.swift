@@ -6,7 +6,7 @@ protocol MovieListCellDelegate: AnyObject {
     
 }
 
-class MovieCell: UICollectionViewCell {
+final class MovieCell: UICollectionViewCell {
     
     // MARK: - Properties
     private let containerStackView: UIStackView = {
@@ -57,7 +57,7 @@ class MovieCell: UICollectionViewCell {
     }()
     private let starButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "star.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.setImage(Design.starButtonImage?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.tintColor = .systemGray
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         button.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -92,10 +92,11 @@ class MovieCell: UICollectionViewCell {
     func apply(item: CellItem) {
         self.item = item
         if item.movie.image == "" {
-            thumbnailImageView.image = UIImage(systemName: "photo.on.rectangle.angled")
+            thumbnailImageView.image = Design.defaultThumbnailImage
         } else {
             thumbnailImageView.loadCachedImage(of: item.movie.image)
         }
+        
         titleLabel.text = item.movie.title.replaceWord
         directorLabel.text = "감독: \(item.movie.director.replaceWord)"
         actorsLabel.text = "출연: \(item.movie.actor.replaceWord)"
@@ -179,6 +180,9 @@ extension MovieCell {
         
         static let titleLabelFont: UIFont = .preferredFont(forTextStyle: .headline)
         static let descriptionContentFont: UIFont = .preferredFont(forTextStyle: .body)
+        
+        static let starButtonImage = UIImage(systemName: "star.fill")
+        static let defaultThumbnailImage = UIImage(systemName: "photo.on.rectangle.angled")
         
     }
 }

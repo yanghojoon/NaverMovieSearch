@@ -1,7 +1,7 @@
 import XCTest
 @testable import NaverMovieSearch
 
-class JSONParserTests: XCTestCase {
+final class JSONParserTests: XCTestCase {
     
     // MARK: - Test
     func test_SearchResult타입_decode했을때_Nil이_아닌지_테스트() {

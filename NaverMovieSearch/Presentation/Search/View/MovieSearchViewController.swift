@@ -35,10 +35,12 @@ final class MovieSearchViewController: UIViewController {
         return button
     }()
     private let loadingActivityIndicator = UIActivityIndicatorView()
+    
     private let textFieldDidReturn = PublishSubject<String>()
     private let favoriteMovie = PublishSubject<(Movie, Bool)>()
     private let collectionViewDidScroll = PublishSubject<IndexPath>()
     private let disposeBag = DisposeBag()
+    
     private var viewModel: MovieSearchViewModel?
     private var collectionViewDataSource: MovieSectionDataSource!
 
@@ -48,12 +50,12 @@ final class MovieSearchViewController: UIViewController {
     convenience init(viewModel: MovieSearchViewModel) {
         self.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
+        self.viewModel?.delegate = self
     }
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel?.delegate = self
         configureNavigationBar()
         configureUI()
         configureTextField()
@@ -70,8 +72,8 @@ final class MovieSearchViewController: UIViewController {
     private func configureNavigationBar() {
         let titleLabel: UILabel = {
             let label = UILabel()
-            label.text = Design.titleText
-            label.font = .preferredFont(forTextStyle: .title1)
+            label.text = Design.navigationTitleText
+            label.font = Design.navigationTitleFont
             label.textAlignment = .left
             return label
         }()
@@ -84,7 +86,7 @@ final class MovieSearchViewController: UIViewController {
     private func configureUI() {
         loadingActivityIndicator.translatesAutoresizingMaskIntoConstraints = false
 
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = Design.backgroundColor
         view.addSubview(searchTextField)
         view.addSubview(listCollectionView)
         view.addSubview(loadingActivityIndicator)
@@ -98,7 +100,7 @@ final class MovieSearchViewController: UIViewController {
             listCollectionView.widthAnchor.constraint(equalTo: searchTextField.widthAnchor),
             listCollectionView.centerXAnchor.constraint(equalTo: searchTextField.centerXAnchor),
             listCollectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor),
-            listCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            listCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
@@ -110,7 +112,7 @@ final class MovieSearchViewController: UIViewController {
         listCollectionView.translatesAutoresizingMaskIntoConstraints = false
         listCollectionView.register(cellClass: MovieCell.self)
         listCollectionView.collectionViewLayout = createCollectionViewLayout()
-        listCollectionView.backgroundColor = .systemGray6
+        listCollectionView.backgroundColor = Design.backgroundColor
         listCollectionView.delegate = self
         collectionViewDataSource = createCollectionViewDataSource()
     }
@@ -206,8 +208,12 @@ extension MovieSearchViewController: MovieSearchViewModelDelegate {
     }
     
     func showNoResultAlert() {
-        let alert = UIAlertController(title: "다시 검색해주세요", message: "검색 결과가 없습니다", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default)
+        let alert = UIAlertController(
+            title: Design.alertTitle,
+            message: Design.alertMessage,
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: Design.okButtonTitle, style: .default)
         alert.addAction(okAction)
         
         present(alert, animated: true)
@@ -271,8 +277,11 @@ extension MovieSearchViewController {
     
     private enum Design {
         
+        static let backgroundColor: UIColor = .systemGray6
+        
         static let searchTextFieldPlaceHolder = "영화 제목을 검색해보세요!"
-        static let titleText = "네이버 영화 검색"
+        static let navigationTitleText = "네이버 영화 검색"
+        static let navigationTitleFont: UIFont = .preferredFont(forTextStyle: .title1)
         
         static let favoriteButtonImage = UIImage(systemName: "star.fill")
         static let favoriteButtonTitle = "즐겨찾기"
@@ -283,6 +292,10 @@ extension MovieSearchViewController {
         static let navigationBarTintColor: UIColor = .systemGray
         static let backButtonTitle = ""
         static let deviceHeightStandard: CGFloat = 750
+        
+        static let alertTitle = "다시 검색해주세요"
+        static let alertMessage = "검색 결과가 없습니다"
+        static let okButtonTitle = "확인"
         
     }
     

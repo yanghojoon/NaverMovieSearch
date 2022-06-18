@@ -1,7 +1,7 @@
 import Foundation
 @testable import NaverMovieSearch
 
-class MockURLSessionDataTask: URLSessionDataTask {
+final class MockURLSessionDataTask: URLSessionDataTask {
     
     var resumeDidCall: () -> Void = {}
     
@@ -13,10 +13,10 @@ class MockURLSessionDataTask: URLSessionDataTask {
     
 }
 
-class MockURLSession: URLSessionProtocol {
+final class MockURLSession: URLSessionProtocol {
     
-    var isRequestSuccess: Bool
-    var sessionDataTask: MockURLSessionDataTask?
+    private var isRequestSuccess: Bool
+    private var sessionDataTask: MockURLSessionDataTask?
     
     init(isRequestSuccess: Bool = true) {
         self.isRequestSuccess = isRequestSuccess

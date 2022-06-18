@@ -3,7 +3,7 @@ import RxDataSources
 import RxSwift
 import UIKit
 
-class FavoritesViewController: UIViewController {
+final class FavoritesViewController: UIViewController {
     
     // MARK: - Properties
     private let listCollectionView = UICollectionView(
