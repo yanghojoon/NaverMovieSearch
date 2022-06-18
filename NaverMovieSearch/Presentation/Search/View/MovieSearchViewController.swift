@@ -33,6 +33,7 @@ final class MovieSearchViewController: UIViewController {
         button.heightAnchor.constraint(equalToConstant: button.intrinsicContentSize.height + 5).isActive = true
         return button
     }()
+    private let loadingActivityIndicator = UIActivityIndicatorView()
     private let textFieldDidReturn = PublishSubject<String>()
     private let favoriteMovie = PublishSubject<(Movie, Bool)>()
     private let disposeBag = DisposeBag()
@@ -75,11 +76,16 @@ final class MovieSearchViewController: UIViewController {
     }
     
     private func configureUI() {
+        loadingActivityIndicator.translatesAutoresizingMaskIntoConstraints = false
+
         view.backgroundColor = .systemGray6
         view.addSubview(searchTextField)
         view.addSubview(listCollectionView)
+        view.addSubview(loadingActivityIndicator)
         
         NSLayoutConstraint.activate([
+            loadingActivityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingActivityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 2),
             searchTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             searchTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
@@ -158,7 +164,7 @@ extension MovieSearchViewController {
     
     private func configureListCollectionView(with movieList: Observable<[CellItem]>) {
         movieList
-            .bind(to: listCollectionView.rx.items) { collectionView, row, item in
+            .bind(to: listCollectionView.rx.items) { [weak self] collectionView, row, item in
                 guard let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: String(describing: MovieCell.self),
                     for: IndexPath(row: row, section: .zero)) as? MovieCell
@@ -166,6 +172,7 @@ extension MovieSearchViewController {
                     return UICollectionViewCell()
                 }
                 
+                self?.loadingActivityIndicator.stopAnimating()
                 cell.apply(item: item)
                 cell.delegate = self
                 
@@ -204,6 +211,7 @@ extension MovieSearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let searchKeyword = textField.text else { return false }
         
+        loadingActivityIndicator.startAnimating()
         view.endEditing(true)
         listCollectionView.setContentOffset(CGPoint.zero, animated: true)
         textFieldDidReturn.onNext(searchKeyword)
