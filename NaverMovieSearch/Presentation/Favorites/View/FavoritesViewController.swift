@@ -1,3 +1,5 @@
+import RxCocoa
+import RxDataSources
 import RxSwift
 import UIKit
 
@@ -9,8 +11,12 @@ class FavoritesViewController: UIViewController {
         collectionViewLayout: UICollectionViewLayout()
     )
     private let disposeBag = DisposeBag()
+    private let cancelledIndexPath = PublishSubject<IndexPath>()
     private var viewModel: FavoritesViewModel!
     private var coordinator: FavoritesCoordinator!
+    private var dataSource: MovieSectionDataSource!
+    
+    typealias MovieSectionDataSource = RxCollectionViewSectionedReloadDataSource<MovieSection>
     
     // MARK: - Initializers
     convenience init(viewModel: FavoritesViewModel, coordinator: FavoritesCoordinator) {
@@ -55,6 +61,24 @@ class FavoritesViewController: UIViewController {
         listCollectionView.register(cellClass: MovieCell.self)
         listCollectionView.collectionViewLayout = createCollectionViewLayout()
         listCollectionView.backgroundColor = Design.backgroundColor
+        dataSource = createCollectionViewDataSource()
+    }
+    
+    private func createCollectionViewDataSource() -> MovieSectionDataSource {
+        let dataSource = MovieSectionDataSource { _, collectionView, indexPath, item -> UICollectionViewCell in
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: String(describing: MovieCell.self),
+                for: indexPath
+            ) as? MovieCell else {
+                return UICollectionViewCell()
+            }
+            cell.delegate = self
+            cell.apply(item: item)
+            
+            return cell
+        }
+        
+        return dataSource
     }
     
     private func createCollectionViewLayout() -> UICollectionViewLayout {
@@ -100,27 +124,15 @@ class FavoritesViewController: UIViewController {
 extension FavoritesViewController {
     
     private func bind() {
-        let input = FavoritesViewModel.Input()
+        let input = FavoritesViewModel.Input(cancelledIndexPath: cancelledIndexPath.asObservable())
         let output = viewModel.transform(input)
         
-        configureListCollectionView(with: output.cellItems)
+        configureListCollectionView(with: output.sections)
     }
     
-    private func configureListCollectionView(with movieList: Observable<[CellItem]>) {
-        movieList
-            .bind(to: listCollectionView.rx.items) { collectionView, row, item in
-                guard let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: String(describing: MovieCell.self),
-                    for: IndexPath(row: row, section: .zero)) as? MovieCell
-                else {
-                    return UICollectionViewCell()
-                }
-                
-                cell.apply(item: item)
-                cell.delegate = self
-                
-                return cell
-            }
+    private func configureListCollectionView(with sections: Observable<[MovieSection]>) {
+        sections
+            .bind(to: listCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
     
@@ -130,7 +142,8 @@ extension FavoritesViewController {
 extension FavoritesViewController: MovieListCellDelegate {
     
     func starButtonDidTap(at cell: MovieCell, isSelected: Bool) {
-        
+        guard let indexPath = listCollectionView.indexPath(for: cell) else { return }
+        cancelledIndexPath.onNext(indexPath)
     }
     
 }

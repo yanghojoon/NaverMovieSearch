@@ -125,6 +125,10 @@ class MovieCell: UICollectionViewCell {
         titleLabel.isHidden = true
     }
     
+    func makeStarButtonDisabled() {
+        starButton.isUserInteractionEnabled = false
+    }
+    
     private func configureUI() {
         self.backgroundColor = .white
         self.addSubview(containerStackView)

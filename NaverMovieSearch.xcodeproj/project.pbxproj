@@ -40,7 +40,8 @@
 		DE83CC14285CC08500CEF374 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE83CC13285CC08500CEF374 /* FavoritesViewController.swift */; };
 		DE83CC16285CC3D500CEF374 /* ChildCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE83CC15285CC3D500CEF374 /* ChildCoordinatorDelegate.swift */; };
 		DE83CC18285CC81700CEF374 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE83CC17285CC81700CEF374 /* FavoritesViewModel.swift */; };
-		DEDF032A285A0AEC000F7915 /* CellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF0329285A0AEC000F7915 /* CellItem.swift */; };
+		DE83CC1B285D690A00CEF374 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = DE83CC1A285D690A00CEF374 /* RxDataSources */; };
+		DEDF032A285A0AEC000F7915 /* CellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF0329285A0AEC000F7915 /* CellDataSource.swift */; };
 		DEDF032E285A2F0A000F7915 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF032D285A2F0A000F7915 /* DetailCoordinator.swift */; };
 		DEDF0334285A3419000F7915 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF0333285A3419000F7915 /* MovieDetailViewController.swift */; };
 		DEDF0336285AABFC000F7915 /* MoviewDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF0335285AABFC000F7915 /* MoviewDetailViewModel.swift */; };
@@ -91,7 +92,7 @@
 		DE83CC13285CC08500CEF374 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		DE83CC15285CC3D500CEF374 /* ChildCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		DE83CC17285CC81700CEF374 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
-		DEDF0329285A0AEC000F7915 /* CellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellItem.swift; sourceTree = "<group>"; };
+		DEDF0329285A0AEC000F7915 /* CellDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDataSource.swift; sourceTree = "<group>"; };
 		DEDF032D285A2F0A000F7915 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		DEDF0333285A3419000F7915 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		DEDF0335285AABFC000F7915 /* MoviewDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviewDetailViewModel.swift; sourceTree = "<group>"; };
@@ -102,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE83CC1B285D690A00CEF374 /* RxDataSources in Frameworks */,
 				DE56954D2858502D009F3DCE /* RxSwift in Frameworks */,
 				DE56954B2858502D009F3DCE /* RxCocoa in Frameworks */,
 			);
@@ -244,7 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				DE569572285863CC009F3DCE /* SearchResult.swift */,
-				DEDF0329285A0AEC000F7915 /* CellItem.swift */,
+				DEDF0329285A0AEC000F7915 /* CellDataSource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -357,6 +359,7 @@
 			packageProductDependencies = (
 				DE56954A2858502D009F3DCE /* RxCocoa */,
 				DE56954C2858502D009F3DCE /* RxSwift */,
+				DE83CC1A285D690A00CEF374 /* RxDataSources */,
 			);
 			productName = NaverMovieSearch;
 			productReference = DE56952828584EC1009F3DCE /* NaverMovieSearch.app */;
@@ -410,6 +413,7 @@
 			mainGroup = DE56951F28584EC1009F3DCE;
 			packageReferences = (
 				DE5695492858502D009F3DCE /* XCRemoteSwiftPackageReference "RxSwift" */,
+				DE83CC19285D690A00CEF374 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = DE56952928584EC1009F3DCE /* Products */;
 			projectDirPath = "";
@@ -468,7 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEDF032E285A2F0A000F7915 /* DetailCoordinator.swift in Sources */,
-				DEDF032A285A0AEC000F7915 /* CellItem.swift in Sources */,
+				DEDF032A285A0AEC000F7915 /* CellDataSource.swift in Sources */,
 				DE5695702858607F009F3DCE /* NaverMovieAPI.swift in Sources */,
 				DE56956628585F9C009F3DCE /* APIProtocol.swift in Sources */,
 				DE83CC10285CBE1100CEF374 /* FavoritesCoordinator.swift in Sources */,
@@ -775,6 +779,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		DE83CC19285D690A00CEF374 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -787,6 +799,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE5695492858502D009F3DCE /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		DE83CC1A285D690A00CEF374 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE83CC19285D690A00CEF374 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
