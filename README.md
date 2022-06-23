@@ -239,7 +239,7 @@ Alert를 띄우는 것도 UI와 관련된 Action인 만큼 Main Thread에서 동
 |---|---|---|
 |<img src="https://user-images.githubusercontent.com/90880660/174446589-b25147da-4d33-42b0-8e72-803b7ee3af67.gif" width=250>|<img src="https://user-images.githubusercontent.com/90880660/174446760-bd6023a2-ed42-4dfe-a127-647293df9991.gif" width=250>|<img src="https://user-images.githubusercontent.com/90880660/174446833-b58fba84-4922-48ed-a68b-2a1884d4e798.gif" width=250>|
 
-## 4️⃣ 고려하지 못했던 부분 & 수정할 부분 
+## 4️⃣ 리팩토링 (고려하지 못했던 부분 & 수정할 부분)
 ### 1. ClientID와 Secret을 코드에 노출시켜놨다. 
 ClientID와 Secret의 경우 외부에 탈취된다면 위험할 수 있다. 물론 현재는 단순히 네이버 영화 API를 사용하는 것이기 때문에 큰 문제가 없지만, 만약 실제 회사에서 사용하는 ClientID와 Secret이 노출되었다면? 이렇게 되면 회사에 손실이 있을 수 있다. 
 
@@ -253,6 +253,11 @@ ClientID와 Secret의 경우 외부에 탈취된다면 위험할 수 있다. 물
 ### 2. 네트워킹 테스트의 역할
 MockURLSession을 활용한 테스트와 거의 동일하게 테스트를 진행하여 `NetworkProviderTests`가 단순히 API가 잘 작동하고 있는지 테스트하는 다소 의미없는 테스트가 됐다. 
 따라서 해당 테스트 외 다른 테스트 추가가 필요하다. 
+
+<새롭게 추가 / 수정한 테스트>
+- 기존 Test의 경우 검색 결과가 바뀌면 테스트가 깨지는 문제가 발생하여, 검색 결과가 있는지 없는지로 테스트 변경
+- 이상한 검색어로 검색을 한 경우 검색결과가 없는지 테스트 추가
+- ID와 Secret이 잘못된 경우 통과하는 테스트를 둬서 ID와 Secret이 문제인지 확인할 수 있도록 함
 
 ### 3. 즐겨찾기 추가 및 제거 방법 
 기존에는 메모리에 즐겨찾기 목록을 저장해놓고 사용하는 방식을 사용했다. 하지만 이렇게 할 경우 Delegate 패턴을 활용해 기존 배열이 저장되어 있는 곳에 일을 시켜 즐겨찾기 목록을 추가 / 삭제해야 했다. 
