@@ -58,7 +58,7 @@ struct NetworkProvider {
 // MARK: - Error
 extension NetworkProvider {
     
-    private enum NetworkError: Error, LocalizedError {
+    enum NetworkError: Error, LocalizedError {
         
         case statusCodeError
         case unknownError

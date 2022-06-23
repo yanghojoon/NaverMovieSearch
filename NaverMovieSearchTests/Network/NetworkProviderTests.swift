@@ -64,5 +64,22 @@ final class NetworkProviderTests: XCTestCase {
         
         wait(for: [expectation], timeout: 10)
     }
+    
+    // 올바르지 않은 ID와 Secret인 경우 해당 테스트만 통과합니다.
+    func test_ID와_Secret을_잘못_넣으면_status_code_에러가_발생하는지() {
+        let expectation = XCTestExpectation()
+        
+        let fetchedData = sut.fetchData(api: NaverMovieAPI(queryTerm: "G"), decodingType: SearchResult.self)
+        _ = fetchedData
+            .catch({ error in
+                XCTAssertEqual(error as? NetworkProvider.NetworkError, NetworkProvider.NetworkError.statusCodeError)
+                expectation.fulfill()
+                return Observable.just(SearchResult(items: []))
+            }).subscribe(onNext: { searchResult in
+                XCTAssertEqual(searchResult.items, [])
+            }).disposed(by: disposeBag)
+        
+        wait(for: [expectation], timeout: 10)
+    }
 
 }
