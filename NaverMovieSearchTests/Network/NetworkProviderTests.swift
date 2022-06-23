@@ -22,14 +22,14 @@ final class NetworkProviderTests: XCTestCase {
     }
     
     // MARK: - Tests
-    // 동일한 메서드를 테스트하는 만큼 API가 잘 동작되는지만 확인이 가능하다. 테스트 케이스를 추가하는 것이 어떨까?
+    // 동일한 메서드를 테스트하는 만큼 API가 잘 동작되는지만 확인이 가능하다. 또한 이런 테스트의 경우 만약 List가 변경되면 테스트가 깨지는 문제가 존재한다.
     func test_fetchData가_한글로_검색_시_제대로_동작하는지_확인() {
         let expectation = XCTestExpectation()
         
         let fetchedData = sut.fetchData(api: NaverMovieAPI(queryTerm: "어벤져스"), decodingType: SearchResult.self)
         _ = fetchedData
             .subscribe(onNext: { searchResult in
-                XCTAssertEqual(searchResult.items[0].title, "레고 마블 <b>어벤져스</b>") // 테스트 결과가 달라질 수 있다.
+                XCTAssertNotEqual(searchResult.items.count, 0)
                 expectation.fulfill()
             })
             .disposed(by: disposeBag)
@@ -43,7 +43,21 @@ final class NetworkProviderTests: XCTestCase {
         let fetchedData = sut.fetchData(api: NaverMovieAPI(queryTerm: "Thor"), decodingType: SearchResult.self)
         _ = fetchedData
             .subscribe(onNext: { searchResult in
-                XCTAssertEqual(searchResult.items[0].title, "토르: 러브 앤 썬더")
+                XCTAssertNotEqual(searchResult.items.count, 0)
+                expectation.fulfill()
+            })
+            .disposed(by: disposeBag)
+        
+        wait(for: [expectation], timeout: 10)
+    }
+    
+    func test_이상한_검색어를_사용한_경우_값이_나오지_않는지() {
+        let expectation = XCTestExpectation()
+        
+        let fetchedData = sut.fetchData(api: NaverMovieAPI(queryTerm: "ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅎㅂㅈ"), decodingType: SearchResult.self)
+        _ = fetchedData
+            .subscribe(onNext: { searchResult in
+                XCTAssertEqual(searchResult.items.count, 0)
                 expectation.fulfill()
             })
             .disposed(by: disposeBag)
