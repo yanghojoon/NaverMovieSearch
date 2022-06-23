@@ -238,3 +238,25 @@ Alert를 띄우는 것도 UI와 관련된 Action인 만큼 Main Thread에서 동
 |즐겨찾기|무한 스크롤|검색결과 없음|
 |---|---|---|
 |<img src="https://user-images.githubusercontent.com/90880660/174446589-b25147da-4d33-42b0-8e72-803b7ee3af67.gif" width=250>|<img src="https://user-images.githubusercontent.com/90880660/174446760-bd6023a2-ed42-4dfe-a127-647293df9991.gif" width=250>|<img src="https://user-images.githubusercontent.com/90880660/174446833-b58fba84-4922-48ed-a68b-2a1884d4e798.gif" width=250>|
+
+## 4️⃣ 고려하지 못했던 부분 & 수정할 부분 
+### 1. ClientID와 Secret을 코드에 노출시켜놨다. 
+ClientID와 Secret의 경우 외부에 탈취된다면 위험할 수 있다. 물론 현재는 단순히 네이버 영화 API를 사용하는 것이기 때문에 큰 문제가 없지만, 만약 실제 회사에서 사용하는 ClientID와 Secret이 노출되었다면? 이렇게 되면 회사에 손실이 있을 수 있다. 
+
+따라서 이를 숨기는 것이 좋다. 
+- 가장 간단한 방법은 단순히 Repo를 private으로 하는 것이다. 그럼 회사 외부 사람들의 경우 코드를 확인할 수 없기 때문에 안전하다. 
+- 다른 방법은 해당 부분을 표시해두고 필요할 경우 ID와 Secret을 따로 보내는 것이다. 
+
+생각을 못했는데 실무에선 중요한 부분인 만큼 잘 챙겨야 할 것 같다. 
+이 부분은 해당 부분을 표시해두고 ID와 Secret을 따로 저장하는 방식으로 해결했다. 
+
+### 2. 네트워킹 테스트의 역할
+MockURLSession을 활용한 테스트와 거의 동일하게 테스트를 진행하여 `NetworkProviderTests`가 단순히 API가 잘 작동하고 있는지 테스트하는 다소 의미없는 테스트가 됐다. 
+따라서 해당 테스트 외 다른 테스트 추가가 필요하다. 
+
+### 3. 즐겨찾기 추가 및 제거 방법 
+기존에는 메모리에 즐겨찾기 목록을 저장해놓고 사용하는 방식을 사용했다. 하지만 이렇게 할 경우 Delegate 패턴을 활용해 기존 배열이 저장되어 있는 곳에 일을 시켜 즐겨찾기 목록을 추가 / 삭제해야 했다. 
+이는 아예 Realm이나 CoreData를 활용해 LocalDB에 저장하는 방식으로 즐겨찾기 추가 및 삭제를 구현할 수 있을 것 같다. 
+
+### 4. BehaviorSubject 대신 drive를 사용할 수 있지 않을까?
+
