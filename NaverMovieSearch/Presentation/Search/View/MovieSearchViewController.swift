@@ -145,6 +145,7 @@ final class MovieSearchViewController: UIViewController {
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.contentInsets = NSDirectionalEdgeInsets(top: 0.5, leading: 0, bottom: 0.5, trailing: 0)
             
+            // iPhone 8/SE 같은 작은 디바이스와 현재 많이 사용하는 디바이스들 모두 유사한 UI를 보여주기 위해 분기
             var groupSize: NSCollectionLayoutSize
             if screenHeight < Design.deviceHeightStandard {
                 groupSize = NSCollectionLayoutSize(

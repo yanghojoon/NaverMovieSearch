@@ -30,7 +30,7 @@ final class MovieSearchViewModel {
     
     // MARK: - Properties
     weak var delegate: MovieSearchViewModelDelegate!
-    private let collectionViewDataSources = BehaviorSubject<[MovieSection]>(value: [])
+    private let collectionViewDataSources = BehaviorSubject<[MovieSection]>(value: []) // drive를 사용할 수 있지 않을까?
     private let coordinator: SearchCoordinator?
     private let disposeBag = DisposeBag()
     private let searchCount = 20

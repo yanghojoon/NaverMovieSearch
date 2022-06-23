@@ -1,7 +1,7 @@
 import Foundation
 import RxDataSources
 
-class CellItem: Equatable {
+class CellItem: Equatable { // CoreData나 Realm같은 로컬 DB를 쓴다면 굳이 나눌 필요가 있을까?
     
     let movie: Movie
     var isSelected: Bool
